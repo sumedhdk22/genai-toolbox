@@ -65,7 +65,7 @@ func (cfg Config) ToolConfigType() string {
 
 func (cfg Config) Initialize(srcs map[string]sources.Source) (tools.Tool, error) {
 	query := parameters.NewStringParameter("query", "The query against which entries in scope should be matched.")
-	scope := parameters.NewStringParameterWithDefault("scope", "", "A scope limits the search space to a particular project or organization. It must be in the format: organizations/<org_id> or projects/<project_id>.")
+	scope := parameters.NewStringParameterWithDefault("scope", "", "A scope limits the search space to a particular project or organization. It must be in the format: organizations/<org_id> or projects/<project_id> or projects/<project_number>.")
 	pageSize := parameters.NewIntParameterWithDefault("pageSize", 5, "Number of results in the search page.")
 	orderBy := parameters.NewStringParameterWithDefault("orderBy", "relevance", "Specifies the ordering of results. Supported values are: relevance, last_modified_timestamp, last_modified_timestamp asc")
 	params := parameters.Parameters{query, scope, pageSize, orderBy}
