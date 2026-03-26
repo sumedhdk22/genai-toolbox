@@ -129,7 +129,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 		if i == 0 {
 			name = currentName
 		} else if name != currentName {
-			err := fmt.Errorf("all resources must belong to the same project and location. Please make separate calls for each distinct project and location combination.")
+			err := fmt.Errorf("all resources must belong to the same project and location. Please make separate calls for each distinct project and location combination")
 			return nil, util.NewAgentError(err.Error(), err)
 		}
 	}
