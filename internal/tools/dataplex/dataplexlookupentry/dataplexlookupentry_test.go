@@ -62,9 +62,6 @@ func TestParseFromYamlDataplexLookupEntry(t *testing.T) {
             source: my-instance
             description: some description
             parameters:
-                - name: name
-                  type: string
-                  description: some name description
                 - name: view
                   type: string
                   description: some view description
@@ -88,7 +85,6 @@ func TestParseFromYamlDataplexLookupEntry(t *testing.T) {
 					Description:  "some description",
 					AuthRequired: []string{},
 					Parameters: []parameters.Parameter{
-						parameters.NewStringParameter("name", "some name description"),
 						parameters.NewStringParameter("view", "some view description"),
 						parameters.NewArrayParameterWithDefault("aspectTypes", []any{}, "some aspect types description", parameters.NewStringParameter("aspectType", "some aspect type description")),
 						parameters.NewStringParameter("entry", "some entry description"),
