@@ -842,9 +842,8 @@ func runDataplexLookupContextToolInvokeTest(t *testing.T, tableName string, data
 		t.Fatalf("error getting Google ID token: %s", err)
 	}
 
-	name := fmt.Sprintf("projects/%s/locations/us", DataplexProject)
 	resourceName := fmt.Sprintf("projects/%s/locations/us/entryGroups/@bigquery/entries/bigquery.googleapis.com/projects/%s/datasets/%s/tables/%s", DataplexProject, DataplexProject, datasetName, tableName)
-	requestBodyFmt := fmt.Sprintf(`{"name":"%s","resources":["%s"]}`, name, resourceName)
+	requestBodyFmt := fmt.Sprintf(`{"resources":["%s"]}`, resourceName)
 
 	testCases := []struct {
 		name           string
@@ -879,6 +878,24 @@ func runDataplexLookupContextToolInvokeTest(t *testing.T, tableName string, data
 			requestHeader:  map[string]string{"my-google-auth_token": "invalid_token"},
 			requestBody:    bytes.NewBufferString(requestBodyFmt),
 			wantStatusCode: 401,
+			expectResult:   false,
+			wantContentKey: "context",
+		},
+		{
+			name:           "Failure - Invalid Resource Format",
+			api:            "http://127.0.0.1:5000/api/tool/my-dataplex-lookup-context-tool/invoke",
+			requestHeader:  map[string]string{},
+			requestBody:    bytes.NewBufferString(`{"resources":["projects/test-project/invalid-format"]}`),
+			wantStatusCode: 400,
+			expectResult:   false,
+			wantContentKey: "context",
+		},
+		{
+			name:           "Failure - Resources with different locations",
+			api:            "http://127.0.0.1:5000/api/tool/my-dataplex-lookup-context-tool/invoke",
+			requestHeader:  map[string]string{},
+			requestBody:    bytes.NewBufferString(`{"resources":["projects/test-project/locations/us/entryGroups/g1/entries/e1", "projects/test-project/locations/europe-west1/entryGroups/g2/entries/e2"]}`),
+			wantStatusCode: 400,
 			expectResult:   false,
 			wantContentKey: "context",
 		},
