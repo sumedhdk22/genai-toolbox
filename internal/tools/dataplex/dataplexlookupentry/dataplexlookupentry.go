@@ -122,16 +122,15 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 	entry, _ := paramsMap["entry"].(string)
 	view, _ := paramsMap["view"].(int)
 	aspectTypeSlice, err := parameters.ConvertAnySliceToTyped(paramsMap["aspectTypes"].([]any), "string")
-
+	if err != nil {
+		return nil, util.NewAgentError(fmt.Sprintf("can't convert aspectTypes to array of strings: %s", err), err)
+	}
 	parts := strings.Split(entry, "/")
 	if len(parts) < 4 || parts[0] != "projects" || parts[2] != "locations" {
 		err = fmt.Errorf("invalid entry format: must be in the form projects/{project}/locations/{location}/entryGroups/{entryGroup}/entries/{entry}")
 		return nil, util.NewAgentError(err.Error(), err)
 	}
 	name := strings.Join(parts[:4], "/")
-	if err != nil {
-		return nil, util.NewAgentError(fmt.Sprintf("can't convert aspectTypes to array of strings: %s", err), err)
-	}
 	aspectTypes := aspectTypeSlice.([]string)
 	resp, err := source.LookupEntry(ctx, name, view, aspectTypes, entry)
 	if err != nil {

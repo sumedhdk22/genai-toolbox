@@ -69,8 +69,8 @@ func (cfg Config) Initialize(srcs map[string]sources.Source) (tools.Tool, error)
 	resources := parameters.NewArrayParameter("resources",
 		"Required. A list of up to 10 resource names from same project and location.",
 		parameters.NewStringParameter("resource",
-			"Name of a resource in the following format: projects/{project_number}/locations/{location}/entryGroups/{group}/entries/{entry}."+
-				" Example for a BigQuery table: 'projects/{project_number}/locations/{location}/entryGroups/@bigquery/entries/bigquery.googleapis.com/projects/{project_id}/datasets/{dataset_id}/tables/{table_id}'."+
+			"Name of a resource in the following format: projects/{project_id_or_number}/locations/{location}/entryGroups/{group}/entries/{entry}."+
+				" Example for a BigQuery table: 'projects/{project_id_or_number}/locations/{location}/entryGroups/@bigquery/entries/bigquery.googleapis.com/projects/{project_id}/datasets/{dataset_id}/tables/{table_id}'."+
 				" This is the same value which is returned by the search_entries tool's response in the dataplexEntry.name field."))
 	params := parameters.Parameters{resources}
 
@@ -121,7 +121,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 	for i, resource := range resources {
 		parts := strings.Split(resource, "/")
 		if len(parts) < 4 || parts[0] != "projects" || parts[2] != "locations" {
-			err := fmt.Errorf("invalid resource format at index %d, must be in the format of projects/{project_number}/locations/{location}/entryGroups/{group}/entries/{entry}", i)
+			err := fmt.Errorf("invalid resource format at index %d, must be in the format of projects/{project_id_or_number}/locations/{location}/entryGroups/{group}/entries/{entry}", i)
 			return nil, util.NewAgentError(err.Error(), err)
 		}
 

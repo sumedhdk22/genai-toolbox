@@ -21,15 +21,15 @@ tools:
   search_entries:
     kind: dataplex-search-entries
     source: dataplex-source
-    description: Searches the entries in Dataplex Catalog based on the provided search query.
+    description: Searches for data assets (eg. table/dataset/view) in Catalog based on the provided search query.
   lookup_entry:
     kind: dataplex-lookup-entry
     source: dataplex-source
-    description: Retrieves a specific entry from Dataplex Catalog.
+    description: Retrieves a specific metadata regarding a data asset (e.g. table/dataset/view) from Catalog
   search_aspect_types:
     kind: dataplex-search-aspect-types
     source: dataplex-source
-    description: Find aspect types relevant to the query.
+    description: Search aspect types relevant to the query.
   lookup_context:
     kind: dataplex-lookup-context
     source: dataplex-source
