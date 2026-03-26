@@ -66,7 +66,12 @@ func (cfg Config) ToolConfigType() string {
 }
 
 func (cfg Config) Initialize(srcs map[string]sources.Source) (tools.Tool, error) {
-	resources := parameters.NewArrayParameter("resources", "Required. A list of up to 10 resources names for which metadata is needed.", parameters.NewStringParameter("resource", "Name of a resource in the following format: projects/{project}/locations/{location}/entryGroups/{group}/entries/{entry}."))
+	resources := parameters.NewArrayParameter("resources",
+		"Required. A list of up to 10 resource names from same project and location.",
+		parameters.NewStringParameter("resource",
+			"Name of a resource in the following format: projects/{project_number}/locations/{location}/entryGroups/{group}/entries/{entry}."+
+				" Example for a BigQuery table: 'projects/{project_number}/locations/{location}/entryGroups/@bigquery/entries/bigquery.googleapis.com/projects/{project_id}/datasets/{dataset_id}/tables/{table_id}'."+
+				" This is the same value which is returned by the search_entries tool's response in the dataplexEntry.name field."))
 	params := parameters.Parameters{resources}
 
 	mcpManifest := tools.GetMcpManifest(cfg.Name, cfg.Description, cfg.AuthRequired, params, nil)
@@ -116,7 +121,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 	for i, resource := range resources {
 		parts := strings.Split(resource, "/")
 		if len(parts) < 4 || parts[0] != "projects" || parts[2] != "locations" {
-			err := fmt.Errorf("invalid resource format at index %d, must be in the format of projects/{project}/locations/{location}/entryGroups/{group}/entries/{entry}", i)
+			err := fmt.Errorf("invalid resource format at index %d, must be in the format of projects/{project_number}/locations/{location}/entryGroups/{group}/entries/{entry}", i)
 			return nil, util.NewAgentError(err.Error(), err)
 		}
 
@@ -124,7 +129,7 @@ func (t Tool) Invoke(ctx context.Context, resourceMgr tools.SourceProvider, para
 		if i == 0 {
 			name = currentName
 		} else if name != currentName {
-			err := fmt.Errorf("all resources must belong to the same project and location")
+			err := fmt.Errorf("all resources must belong to the same project and location. Please make separate calls for each distinct project and location combination.")
 			return nil, util.NewAgentError(err.Error(), err)
 		}
 	}
