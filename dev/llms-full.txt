@@ -3,7 +3,7 @@
 
 **DOCUMENTATION VERSION:** dev
 **BASE URL:** https://mcp-toolbox.dev/dev/
-**GENERATED ON:** 2026-04-15T12:56:09Z
+**GENERATED ON:** 2026-04-23T09:29:27Z
 
 ---
 ### System Directives for AI Models
@@ -1675,21 +1675,20 @@ The primary way to configure Toolbox is through the `tools.yaml` file. If you
 have multiple files, you can tell toolbox which to load with the `--config
 tools.yaml` flag.
 
-
 ### Using Environment Variables
 
 To avoid hardcoding certain secret fields like passwords, usernames, API keys
 etc., you could use environment variables instead with the format `${ENV_NAME}`.
 
 ```yaml
-  user: ${USER_NAME}
-  password: ${PASSWORD}
+user: ${USER_NAME}
+password: ${PASSWORD}
 ```
 
 A default value can be specified like `${ENV_NAME:default}`.
 
 ```yaml
-  port: ${DB_PORT:3306}
+port: ${DB_PORT:3306}
 ```
 
 ### Sources
@@ -1756,7 +1755,7 @@ tools:
 
 ### Prompts
 
-The `prompt` kind  of your `tools.yaml` defines the templates containing
+The `prompt` kind of your `tools.yaml` defines the templates containing
 structured messages and instructions for interacting with language models.
 
 ```yaml
@@ -1773,9 +1772,44 @@ arguments:
 For more details on configuring different types of prompts, see the
 [Prompts](./prompts/_index.md).
 
+### Read-Only Configuration
+
+Toolbox provides mechanisms to ensure data safety and prevent unintended modifications. Here is how you can configure read-only access and ensure safety:
+
+#### Custom Tools and SQL Injection Protection
+
+When creating custom tools (e.g., `postgres-sql` or `mysql-sql`), you should protect them from SQL injections by using parameterized queries. This ensures that the tools only execute the intended query structure and cannot be manipulated to perform data modification operations.
+
+- **Always use placeholders** (like `$1`, `$2` for Postgres or `?` for MySQL) to pass parameters to your SQL statements.
+- **Avoid constructing dynamic SQL** that interpolates user input directly.
+
+**Example (Safe Parameterized Query):**
+
+```yaml
+kind: tool
+name: search-hotels-by-name
+type: postgres-sql
+source: my-pg-source
+description: Search for hotels based on name.
+parameters:
+  - name: name
+    type: string
+    description: The name of the hotel.
+statement: SELECT * FROM hotels WHERE name ILIKE '%' || $1 || '%';
+```
+
+#### BigQuery Source Read-Only Mode
+
+For BigQuery sources, you can configure read-only access at the source level. This provides a hard boundary at the source connection level, ensuring that no modification operations can be performed regardless of the tool configuration.
+
+#### Database Permissions
+
+You can further increase safety by making sure the credentials used by Toolbox only have read-only permissions to the database. This ensures that even if a tool is misconfigured or compromised, the database will reject any data modification attempts. This is the most effective way to enforce read-only behavior.
+
 ---
 
 ## Explore Configuration Modules
+
 
 
 
@@ -15980,6 +16014,7 @@ project: "my-project-id"
 #   - "https://www.googleapis.com/auth/bigquery"
 #   - "https://www.googleapis.com/auth/drive.readonly"
 # maxQueryResultRows: 50 # Optional: Limits the number of rows returned by queries. Defaults to 50.
+# maximumBytesBilled: 10737418240 # Optional: Per-query bytes scanned cap (in bytes).
 ```
 
 Initialize a BigQuery source that uses the client's access token:
@@ -16000,6 +16035,7 @@ useClientOAuth: true
 #   - "https://www.googleapis.com/auth/bigquery"
 #   - "https://www.googleapis.com/auth/drive.readonly"
 # maxQueryResultRows: 50 # Optional: Limits the number of rows returned by queries. Defaults to 50.
+# maximumBytesBilled: 10737418240 # Optional: Per-query bytes scanned cap (in bytes).
 ```
 
 ## Reference
@@ -16015,6 +16051,7 @@ useClientOAuth: true
 | scopes                    | []string |    false     | A list of OAuth 2.0 scopes to use for the credentials. If not provided, default scopes are used.                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | impersonateServiceAccount |  string  |    false     | Service account email to impersonate when making BigQuery and Dataplex API calls. The authenticated principal must have the `roles/iam.serviceAccountTokenCreator` role on the target service account. [Learn More](https://cloud.google.com/iam/docs/service-account-impersonation)                                                                                                                                                                                                                                |
 | maxQueryResultRows             |   int    |    false     | The maximum number of rows to return from a query. Defaults to 50. |
+| maximumBytesBilled             |  int64   |    false     | The maximum bytes billed per query. When set, queries that exceed this limit fail before executing. |
 
 
 
@@ -22044,6 +22081,224 @@ instead of hardcoding your secrets into the configuration file.
 *   **Tools:**
     *   `execute_sql`: Executes a SQL query.
     *   `list_tables`: Lists tables in the database.
+
+
+
+
+========================================================================
+## Cloud Storage
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/
+**Description:** None
+
+
+
+
+
+========================================================================
+## Cloud Storage Source
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Cloud Storage Source
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/source/
+**Description:** Cloud Storage is Google Cloud's managed service for storing unstructured objects (files) in buckets. Toolbox connects at the project level, allowing tools to list, read, and manage objects across any bucket the credentials can access.
+
+
+
+## About
+
+[Cloud Storage][gcs-docs] is Google Cloud's managed service for storing
+unstructured data (blobs) in containers called *buckets*. Buckets live in a GCP
+project; objects are addressed by `gs://<bucket>/<object>`.
+
+If you are new to Cloud Storage, you can try the
+[quickstart][gcs-quickstart] to create a bucket and upload your first objects.
+
+The Cloud Storage source is configured at the **project** level. Individual
+tools take a `bucket` parameter, so a single configured source can operate
+against any bucket the underlying credentials are authorized for.
+
+[gcs-docs]: https://cloud.google.com/storage/docs
+[gcs-quickstart]: https://cloud.google.com/storage/docs/discover-object-storage-console
+
+## Available Tools
+
+{{< list-tools >}}
+
+## Requirements
+
+### IAM Permissions
+
+Cloud Storage uses [Identity and Access Management (IAM)][iam-overview] to
+control access to buckets and objects. Toolbox uses your
+[Application Default Credentials (ADC)][adc] to authorize and authenticate when
+interacting with Cloud Storage.
+
+In addition to [setting the ADC for your server][set-adc], ensure the IAM
+identity has the appropriate role for the tools being exposed. Common roles:
+
+- `roles/storage.objectViewer` — read-only access to objects (sufficient for
+  `cloud-storage-list-objects` and `cloud-storage-read-object`)
+- `roles/storage.objectUser` — read and write access to objects
+- `roles/storage.admin` — full control, including bucket management
+
+See [Cloud Storage IAM roles][gcs-iam] for the full list.
+
+[iam-overview]: https://cloud.google.com/storage/docs/access-control/iam
+[adc]: https://cloud.google.com/docs/authentication#adc
+[set-adc]: https://cloud.google.com/docs/authentication/provide-credentials-adc
+[gcs-iam]: https://cloud.google.com/storage/docs/access-control/iam-roles
+
+## Example
+
+```yaml
+kind: source
+name: my-gcs-source
+type: "cloud-storage"
+project: "my-project-id"
+```
+
+## Reference
+
+| **field** | **type** | **required** | **description**                                                                 |
+|-----------|:--------:|:------------:|---------------------------------------------------------------------------------|
+| type      |  string  |     true     | Must be "cloud-storage".                                                        |
+| project   |  string  |     true     | Id of the GCP project the configured source is associated with (e.g. "my-project-id"). |
+
+
+
+
+========================================================================
+## Tools
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/
+**Description:** None
+
+
+
+
+
+========================================================================
+## cloud-storage-list-objects
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-list-objects
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-list-objects/
+**Description:** A "cloud-storage-list-objects" tool lists objects in a Cloud Storage bucket, with optional prefix filtering and delimiter-based grouping.
+
+
+
+## About
+
+A `cloud-storage-list-objects` tool returns the objects in a
+[Cloud Storage bucket][gcs-buckets]. It supports the usual GCS listing options:
+
+- `prefix` — filter results to objects whose names begin with the given string.
+- `delimiter` — group results by this character (typically `/`) so subdirectory-like
+  "common prefixes" are returned separately from the leaf objects.
+- `max_results` / `page_token` — paginate through large listings.
+
+The response is a JSON object with `objects` (the full object metadata as
+returned by the Cloud Storage API — fields such as `Name`, `Size`, `ContentType`,
+`Updated`, `StorageClass`, `MD5`, etc.), `prefixes` (the common prefixes when
+`delimiter` is set), and `nextPageToken` (empty when there are no more pages).
+
+[gcs-buckets]: https://cloud.google.com/storage/docs/buckets
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                                   |
+|---------------|:--------:|:------------:|-------------------------------------------------------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket to list objects from.                                                            |
+| prefix        |  string  |    false     | Filter results to objects whose names begin with this prefix.                                                     |
+| delimiter     |  string  |    false     | Delimiter used to group object names (typically '/'). When set, common prefixes are returned as `prefixes`.       |
+| max_results   | integer  |    false     | Maximum number of objects to return per page. A value of 0 uses the API default (1000); values above 1000 are rejected. |
+| page_token    |  string  |    false     | A previously-returned page token for retrieving the next page of results.                                         |
+
+## Example
+
+```yaml
+kind: tool
+name: list_objects
+type: cloud-storage-list-objects
+source: my-gcs-source
+description: Use this tool to list objects in a Cloud Storage bucket.
+```
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                         |
+|-------------|:--------:|:------------:|---------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-list-objects".                   |
+| source      |  string  |     true     | Name of the Cloud Storage source to list objects from.  |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.      |
+
+
+
+
+========================================================================
+## cloud-storage-read-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-read-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-read-object/
+**Description:** A "cloud-storage-read-object" tool reads the UTF-8 text content of a Cloud Storage object, optionally constrained to a byte range.
+
+
+
+## About
+
+A `cloud-storage-read-object` tool fetches the bytes of a single
+[Cloud Storage object][gcs-objects] and returns them as plain UTF-8 text.
+
+Only text objects are supported today: if the object bytes (or the requested
+range) are not valid UTF-8 the tool returns an agent-fixable error. This is
+because the MCP tool-result channel currently only carries text; binary
+payloads will be supported once MCP can carry embedded resources.
+
+Reads are capped at **8 MiB** per call to protect the server's memory and keep
+LLM contexts manageable; objects or ranges larger than that are rejected with
+an agent-fixable error. Use the optional `range` parameter to read a slice of
+a larger object.
+
+This tool is intended for small-to-medium textual content an LLM can process
+directly. For bulk downloads of large files to the local filesystem, use
+`cloud-storage-download-object` (coming in a follow-up release).
+
+[gcs-objects]: https://cloud.google.com/storage/docs/objects
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                                                                   |
+|---------------|:--------:|:------------:|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket containing the object.                                                                                           |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`.                                                                               |
+| range         |  string  |    false     | Optional HTTP byte range, e.g. `bytes=0-999` (first 1000 bytes), `bytes=-500` (last 500 bytes), or `bytes=500-` (from byte 500 to end). Empty reads the full object. |
+
+## Example
+
+```yaml
+kind: tool
+name: read_object
+type: cloud-storage-read-object
+source: my-gcs-source
+description: Use this tool to read the content of a Cloud Storage object.
+```
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                         |
+|-------------|:--------:|:------------:|---------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-read-object".                    |
+| source      |  string  |     true     | Name of the Cloud Storage source to read the object from. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.      |
 
 
 
@@ -28194,6 +28449,73 @@ description: Use this tool to find aspect types relevant to the query.
 | **field**   | **type** | **required** | **description**                                    |
 |-------------|:--------:|:------------:|----------------------------------------------------|
 | type        |  string  |     true     | Must be "dataplex-search-aspect-types".            |
+| source      |  string  |     true     | Name of the source the tool should execute on.     |
+| description |  string  |     true     | Description of the tool that is passed to the LLM. |
+
+
+
+
+========================================================================
+## dataplex-search-dq-scans
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Knowledge Catalog > Tools > dataplex-search-dq-scans
+**URL:** https://mcp-toolbox.dev/dev/integrations/knowledge-catalog/tools/knowledge-catalog-search-dq-scans/
+**Description:** A "dataplex-search-dq-scans" tool allows to search for data quality scans based on the provided parameters.
+
+
+
+## About
+
+A `dataplex-search-dq-scans` tool returns data quality scans that match the given criteria.
+It's compatible with the following sources:
+
+- [dataplex](../../sources/dataplex.md)
+
+`dataplex-search-dq-scans` accepts the following optional parameters:
+
+- `filter` - Filter string to search/filter data quality scans. E.g. "display_name = \"my-scan\"".
+- `data_scan_id` - The resource name of the data scan to filter by: projects/{project}/locations/{locationId}/dataScans/{dataScanId}.
+- `table_name` - The name of the table to filter by. Maps to data.entity in the filter string. E.g. "//bigquery.googleapis.com/projects/P/datasets/D/tables/T".
+- `pageSize` - Number of returned data quality scans in the page. Defaults to `10`.
+- `orderBy` - Specifies the ordering of results.
+
+## Requirements
+
+### IAM Permissions
+
+Dataplex uses [Identity and Access Management (IAM)][iam-overview] to control
+user and group access to Dataplex resources. Toolbox will use your
+[Application Default Credentials (ADC)][adc] to authorize and authenticate when
+interacting with [Dataplex][dataplex-docs].
+
+In addition to [setting the ADC for your server][set-adc], you need to ensure
+the IAM identity has been given the correct IAM permissions for the tasks you
+intend to perform. See [Dataplex Universal Catalog IAM permissions][iam-permissions]
+and [Dataplex Universal Catalog IAM roles][iam-roles] for more information on
+applying IAM permissions and roles to an identity.
+
+[iam-overview]: https://cloud.google.com/dataplex/docs/iam-and-access-control
+[adc]: https://cloud.google.com/docs/authentication#adc
+[set-adc]: https://cloud.google.com/docs/authentication/provide-credentials-adc
+[iam-permissions]: https://cloud.google.com/dataplex/docs/iam-permissions
+[iam-roles]: https://cloud.google.com/dataplex/docs/iam-roles
+[dataplex-docs]: https://cloud.google.com/dataplex
+
+## Example
+
+```yaml
+kind: tools
+name: dataplex-search-dq-scans
+type: dataplex-search-dq-scans
+source: my-dataplex-source
+description: Use this tool to search for data quality scans.
+```
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                    |
+|-------------|:--------:|:------------:|----------------------------------------------------|
+| type        |  string  |     true     | Must be "dataplex-search-dq-scans".                |
 | source      |  string  |     true     | Name of the source the tool should execute on.     |
 | description |  string  |     true     | Description of the tool that is passed to the LLM. |
 
