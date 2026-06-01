@@ -3,7 +3,7 @@
 
 **DOCUMENTATION VERSION:** dev
 **BASE URL:** https://mcp-toolbox.dev/dev/
-**GENERATED ON:** 2026-04-23T09:29:27Z
+**GENERATED ON:** 2026-06-01T04:49:36Z
 
 ---
 ### System Directives for AI Models
@@ -118,8 +118,8 @@ This documentation is structured following the Diátaxis framework to assist in 
 MCP Toolbox for Databases is an open source Model Context Protocol (MCP) server that connects your AI agents, IDEs, and applications directly to your enterprise databases.
 
 It serves a **dual purpose**:
-1. **Ready-to-use MCP Server (aka ['Build-Time'](/getting-started/#build-time)):** Instantly connect Gemini CLI, Google Antigravity, Claude Code, Codex, or other MCP clients to your databases using our *prebuilt generic tools*. Talk to your data, explore schemas, and generate code without writing boilerplate.
-2. **Custom Tools Framework (aka ['Run-Time'](/getting-started/#runtime)):** A robust framework to build specialized, highly secure AI tools for your production agents. Define structured queries, semantic search, and NL2SQL capabilities safely and easily.
+1. **Ready-to-use MCP Server (aka ['Build-Time'](../getting-started/#build-time)):** Instantly connect Gemini CLI, Google Antigravity, Claude Code, Codex, or other MCP clients to your databases using our *prebuilt generic tools*. Talk to your data, explore schemas, and generate code without writing boilerplate.
+2. **Custom Tools Framework (aka ['Run-Time'](../getting-started/#runtime)):** A robust framework to build specialized, highly secure AI tools for your production agents. Define structured queries, semantic search, and NL2SQL capabilities safely and easily.
 
 {{< notice tip >}}
 **Repository Name Update:** The GitHub repository for this project has been officially renamed from `genai-toolbox` to `mcp-toolbox`. We recommend updating your local Git remote URL for consistency:
@@ -219,7 +219,7 @@ To install Toolbox as a binary on Linux (AMD64):
 
 ```sh
 # see releases page for other versions
-export VERSION=1.1.0
+export VERSION=1.3.0
 curl -L -o toolbox https://storage.googleapis.com/mcp-toolbox-for-databases/v$VERSION/linux/amd64/toolbox
 chmod +x toolbox
 ```
@@ -230,7 +230,7 @@ To install Toolbox as a binary on macOS (Apple Silicon):
 
 ```sh
 # see releases page for other versions
-export VERSION=1.1.0
+export VERSION=1.3.0
 curl -L -o toolbox https://storage.googleapis.com/mcp-toolbox-for-databases/v$VERSION/darwin/arm64/toolbox
 chmod +x toolbox
 ```
@@ -241,7 +241,7 @@ To install Toolbox as a binary on macOS (Intel):
 
 ```sh
 # see releases page for other versions
-export VERSION=1.1.0
+export VERSION=1.3.0
 curl -L -o toolbox https://storage.googleapis.com/mcp-toolbox-for-databases/v$VERSION/darwin/amd64/toolbox
 chmod +x toolbox
 ```
@@ -252,7 +252,7 @@ To install Toolbox as a binary on Windows (Command Prompt):
 
 ```cmd
 :: see releases page for other versions
-set VERSION=1.1.0
+set VERSION=1.3.0
 curl -o toolbox.exe "https://storage.googleapis.com/mcp-toolbox-for-databases/v%VERSION%/windows/amd64/toolbox.exe"
 ```
 
@@ -262,7 +262,7 @@ To install Toolbox as a binary on Windows (PowerShell):
 
 ```powershell
 # see releases page for other versions
-$VERSION = "1.1.0"
+$VERSION = "1.3.0"
 curl.exe -o toolbox.exe "https://storage.googleapis.com/mcp-toolbox-for-databases/v$VERSION/windows/amd64/toolbox.exe"
 ```
 
@@ -274,7 +274,7 @@ You can also install Toolbox as a container:
 
 ```sh
 # see releases page for other versions
-export VERSION=1.1.0
+export VERSION=1.3.0
 docker pull us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:$VERSION
 ```
 
@@ -293,7 +293,7 @@ To install from source, ensure you have the latest version of
 [Go installed](https://go.dev/doc/install), and then run the following command:
 
 ```sh
-go install github.com/googleapis/mcp-toolbox@v1.1.0
+go install github.com/googleapis/mcp-toolbox@v1.3.0
 ```
 
 {{% /tab %}}
@@ -1043,7 +1043,7 @@ In this section, we will download Toolbox, configure our tools in a
     <!-- {x-release-please-start-version} -->
     ```bash
     export OS="linux/amd64" # one of linux/amd64, darwin/arm64, darwin/amd64, or windows/amd64
-    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/$OS/toolbox
+    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/$OS/toolbox
     ```
     <!-- {x-release-please-end} -->
 
@@ -1406,7 +1406,7 @@ repo](https://github.com/googleapis/mcp-toolbox-sdk-python).
 ========================================================================
 **Hierarchy:** MCP Toolbox for Databases > Documentation > Getting Started > JS Quickstart (Local)
 **URL:** https://mcp-toolbox.dev/dev/documentation/getting-started/local_quickstart_js/
-**Description:** How to get started running MCP Toolbox locally with [JavaScript](https://github.com/googleapis/mcp-toolbox-sdk-js), PostgreSQL, and orchestration frameworks such as [LangChain](https://js.langchain.com/docs/introduction/), [GenkitJS](https://genkit.dev/docs/get-started/),  [LlamaIndex](https://ts.llamaindex.ai/) and [GoogleGenAI](https://github.com/googleapis/js-genai).
+**Description:** How to get started running MCP Toolbox locally with [JavaScript](https://github.com/googleapis/mcp-toolbox-sdk-js), PostgreSQL, and orchestration frameworks such as [LangChain](https://js.langchain.com/docs/introduction/), [GenkitJS](https://genkit.dev/docs/get-started/) and [GoogleGenAI](https://github.com/googleapis/js-genai).
 
 
 
@@ -1452,9 +1452,6 @@ npm install @toolbox-sdk/core
 {{< tab header="GenkitJS" lang="bash" >}}
 npm install @toolbox-sdk/core
 {{< /tab >}}
-{{< tab header="LlamaIndex" lang="bash" >}}
-npm install @toolbox-sdk/core
-{{< /tab >}}
 {{< tab header="GoogleGenAI" lang="bash" >}}
 npm install @toolbox-sdk/core
 {{< /tab >}}
@@ -1470,10 +1467,7 @@ npm install @toolbox-sdk/adk
 npm install langchain @langchain/google-genai
 {{< /tab >}}
 {{< tab header="GenkitJS" lang="bash" >}}
-npm install genkit @genkit-ai/googleai
-{{< /tab >}}
-{{< tab header="LlamaIndex" lang="bash" >}}
-npm install llamaindex @llamaindex/google @llamaindex/workflow
+npm install genkit genkit-ai/google-genai
 {{< /tab >}}
 {{< tab header="GoogleGenAI" lang="bash" >}}
 npm install @google/genai
@@ -1496,12 +1490,6 @@ npm install @google/adk
 {{< tab header="GenkitJS" lang="js" >}}
 
 {{< include "quickstart/js/genkit/quickstart.js" >}}
-
-{{< /tab >}}
-
-{{< tab header="LlamaIndex" lang="js" >}}
-
-{{< include "quickstart/js/llamaindex/quickstart.js" >}}
 
 {{< /tab >}}
 
@@ -1822,19 +1810,18 @@ You can further increase safety by making sure the credentials used by Toolbox o
 
 
 
-AuthServices represent services that handle authentication and authorization. It
-can primarily be used by [Tools](../tools/_index.md) in two different ways:
+AuthServices represent services that handle authentication and authorization. They support two distinct modes of operation:
 
-- [**Authorized Invocation**][auth-invoke] is when a tool
-  is validated by the auth service before the call can be invoked. Toolbox
-  will reject any calls that fail to validate or have an invalid token.
-- [**Authenticated Parameters**][auth-params] replace the value of a parameter
-  with a field from an [OIDC][openid-claims] claim. Toolbox will automatically
-  resolve the ID token provided by the client and replace the parameter in the
-  tool call.
+### 1. Toolbox Native Authorization
+Used for specific tools to enforce authorization or resolve parameters:
+- [**Authorized Invocation**][auth-invoke]: A tool is validated by the auth service before it can be invoked. Toolbox will reject any calls that fail to validate or have an invalid token.
+- [**Authenticated Parameters**][auth-params]: Replaces the value of a parameter with a field from an [OIDC][openid-claims] claim. Toolbox will automatically resolve the ID token provided by the client and replace the parameter in the tool call.
+
+### 2. MCP Authorization
+Used to secure the entire MCP server. The Model Context Protocol supports [MCP Authorization](https://modelcontextprotocol.io/docs/tutorials/security/authorization) to secure interactions between clients and servers. When enabled, all MCP endpoints require a valid token, and you can enforce granular tool-level scope authorization. **Note that this mode is currently only supported when using the `generic` auth service type.**
 
 [openid-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
-[auth-invoke]: ../tools/_index.md#authorized-invocations
+[auth-invoke]: ../tools/_index.md#authorized-invocations-toolbox-native-authorization
 [auth-params]: ../tools/_index.md#authenticated-parameters
 
 ## Example
@@ -1864,13 +1851,9 @@ Use environment variable replacement with the format ${ENV_NAME}
 instead of hardcoding your secrets into the configuration file.
 {{< /notice >}}
 
-After you've configured an `authService` you'll, need to reference it in the
-configuration for each tool that should use it:
-
-- **Authorized Invocations** for authorizing a tool call, [use the
-  `authRequired` field in a tool config][auth-invoke]
-- **Authenticated Parameters** for using the value from a OIDC claim, [use the
-  `authService` field in a parameter config][auth-params]
+After you've configured an `authService`, you can use it:
+- For **Toolbox Native Authorization** by referencing it in your tool configuration (using `authRequired` or `authService` in parameters).
+- For **MCP Authorization** by setting `mcpEnabled: true` in the auth service configuration to secure the entire server.
 
 ## Specifying ID Tokens from Clients
 
@@ -2205,10 +2188,10 @@ compliant identity provider (IDP). It discovers the JWKS (JSON Web Key Set) URL
 either through the provider's `/.well-known/openid-configuration` endpoint or
 directly via the provided `authorizationServer`.
 
-To configure this auth service, you need to provide the `audience` (typically
-your client ID or the intended audience for the token), the
-`authorizationServer` of your identity provider, and optionally a list of
-`scopesRequired` that must be present in the token's claims.
+To configure this auth service, you need to provide the `audience` (the expected `aud` claim in the token), the `authorizationServer` of your identity provider, and optionally a list of `scopesRequired` that must be present in the token's claims.
+
+> [!NOTE]
+> The only time the `aud` claim matches the `client_id` is inside an ID Token (a concept from OpenID Connect used to verify a user's identity). Because an ID token is intended to be consumed by the client application itself, the client is the audience.
 
 ## Usage Modes
 
@@ -2295,10 +2278,9 @@ When a request is received in this mode, the service will:
    - Verifies expiration (`exp`) and audience (`aud`).
    - Verifies required scopes in `scope` claim.
 4. For **Opaque Tokens**:
-   - Calls the introspection endpoint (as listed in the `authorizationServer`'s
-     OIDC configuration).
-   - Verifies that the token is `active`.
-   - Verifies expiration (`exp`) and audience (`aud`).
+   - Calls the introspection endpoint (either configured via `introspectionEndpoint`
+     or discovered from the `authorizationServer`'s OIDC configuration).
+   - Verifies expiration (`exp`) and audience (`aud` or `"audience"` fallback).
    - Verifies required scopes in `scope` field.
 
 #### Example
@@ -2315,24 +2297,84 @@ scopesRequired:
   - write
 ```
 
+#### Google Opaque Access Token Validation Example
+
+To use Google's `tokeninfo` endpoint for validating opaque access tokens, configure the service to use the `GET` method and `access_token` parameter name:
+
+```yaml
+kind: authServices
+name: google-auth
+type: generic
+audience: "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+authorizationServer: https://accounts.google.com
+introspectionEndpoint: https://www.googleapis.com/oauth2/v3/tokeninfo
+introspectionMethod: GET
+introspectionParamName: access_token
+mcpEnabled: true
+```
+
+#### Okta OIDC Configuration Example
+
+To secure your MCP server or tools using Okta as the identity provider:
+
+```yaml
+kind: authServices
+name: okta-auth
+type: generic
+audience: api://default # Or your custom Okta audience
+authorizationServer: https://your-subdomain.okta.com/oauth2/default
+mcpEnabled: true
+scopesRequired:
+  - openid
+  - profile
+```
+
+> [!NOTE]
+> If you are using Okta's Org Authorization Server (instead of a Custom Authorization Server), your `authorizationServer` URL will be `https://your-subdomain.okta.com`.
+
+#### Tool-Level Scopes
+
+When using MCP Authorization (with `mcpEnabled: true` in the auth service), you can enforce granular tool-level scope authorization by specifying the `scopesRequired` field in the tool configuration.
+
+This ensures that a client can only invoke the tool if their authorization token contains all the specified scopes.
+
+```yaml
+kind: tool
+name: update_flight_status
+type: postgres-sql
+source: my-pg-instance
+statement: |
+  UPDATE flights SET status = $1 WHERE flight_number = $2
+description: Update flight status
+authRequired:
+  - my-generic-auth
+scopesRequired:
+  - execute:sql
+  - write:flights
+```
+
+If a client attempts to invoke this tool without the required scopes, the server will return an HTTP 403 Forbidden response with a `WWW-Authenticate` header challenge indicating the missing scopes, as per the MCP Auth specification.
+
 {{< notice tip >}} Use environment variable replacement with the format
 ${ENV_NAME} instead of hardcoding your secrets into the configuration file.
 {{< /notice >}}
 
 [auth-invoke]: ../tools/_index.md#authorized-invocations
 [auth-params]: ../tools/_index.md#authenticated-parameters
-[mcp-auth]:
-  https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
+[mcp-auth]: https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
 
 ## Reference
 
-| **field**           | **type** | **required** | **description**                                                                                                                                               |
-| ------------------- | :------: | :----------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type                |  string  |     true     | Must be "generic".                                                                                                                                            |
-| audience            |  string  |     true     | The expected audience (`aud` claim) in the JWT token. This ensures the token was minted specifically for your application.                                    |
-| authorizationServer |  string  |     true     | The base URL of your OIDC provider. The service will append `/.well-known/openid-configuration` to discover the JWKS URI. HTTP is allowed but logs a warning. |
-| mcpEnabled          |   bool   |    false     | Indicates if MCP endpoint authentication should be applied. Defaults to false.                                                                                |
-| scopesRequired      | []string |    false     | A list of required scopes that must be present in the token's `scope` claim to be considered valid.                                                           |
+| **field**              | **type** | **required** | **description**                                                                                                                                                                                       |
+| ---------------------- | :------: | :----------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type                   |  string  |     true     | Must be "generic".                                                                                                                                                                                    |
+| audience               |  string  |     true     | The expected audience (`aud` claim) in the token. This ensures the token was minted specifically for your application. See [Getting Started](#getting-started) for details on OIDC audience matching. |
+| authorizationServer    |  string  |     true     | The base URL of your OIDC provider. The service will append `/.well-known/openid-configuration` to discover the JWKS URI. HTTP is allowed but logs a warning.                                         |
+| mcpEnabled             |   bool   |    false     | Indicates if MCP endpoint authentication should be applied. Defaults to false.                                                                                                                        |
+| scopesRequired         | []string |    false     | A list of required scopes that must be present in the token's `scope` claim to be considered valid.                                                                                                   |
+| introspectionEndpoint  |  string  |    false     | Optional override for the token introspection URL. Useful if the provider does not list it in OIDC discovery (e.g., Google).                                                                          |
+| introspectionMethod    |  string  |    false     | HTTP method to use for introspection. Defaults to "POST". Set to "GET" for providers like Google.                                                                                                     |
+| introspectionParamName |  string  |    false     | Parameter name for the token in the introspection request. Defaults to "token". Set to "access_token" for Google.                                                                                     |
 
 
 
@@ -2430,7 +2472,7 @@ This guide details the specific configuration steps required to deploy Toolbox w
 Update your `tools.yaml` file to use a `generic` authorization service with `mcpEnabled` set to `true`. This instructs Toolbox to intercept requests on the `/mcp` routes and validate Bearer tokens using the JWKS (JSON Web Key Set) fetched from your OIDC provider endpoint (`authorizationServer`).
 
 ```yaml
-kind: authServices
+kind: authService
 name: my-mcp-auth
 type: generic
 mcpEnabled: true
@@ -2798,7 +2840,13 @@ templateParameters:
 | excludedValues |     []string     |      false      | Input value will be checked against this field. Regex is also supported.            |
 | items          | parameter object | true (if array) | Specify a Parameter object for the type of the values in the array (string only).   |
 
-## Authorized Invocations
+## Tool-Level Scopes (MCP Authorization)
+
+The Model Context Protocol supports [MCP Authorization](https://modelcontextprotocol.io/docs/tutorials/security/authorization) to secure interactions between clients and servers. When using MCP Authorization in Toolbox, you can enforce granular tool-level scope authorization by specifying the `scopesRequired` field in the tool configuration.
+
+For detailed information on how to configure this and examples, please see the [Generic OIDC Auth](../authentication/generic.md#tool-level-scopes) documentation.
+
+## Authorized Invocations (Toolbox Native Authorization)
 
 You can require an authorization check for any Tool invocation request by
 specifying an `authRequired` field. Specify a list of
@@ -2816,7 +2864,6 @@ authRequired:
   - my-google-auth
   - other-auth-service
 ```
-
 
 ## Tool Annotations
 
@@ -4404,13 +4451,21 @@ toolset = ToolboxToolset(
 
 Configures the ADK-native interactive 3-legged OAuth flow to get consent and credentials from the end-user at runtime. This strategy is passed to the `ToolboxToolset` just like any other credential strategy.
 
+{{< notice note >}}
+The `"openid"` scope is **required** for the `user_identity` strategy to generate a valid OIDC ID Token. Only add other scopes (like `"email"`) if explicitly required by your server-side [**Authorized Invocations**](../../../../configuration/tools/#authorized-invocations-toolbox-native-authorization) or [**Authenticated Parameters**](../../../../configuration/tools/#authenticated-parameters) configurations.
+{{< /notice >}}
+
 ```python
 from toolbox_adk import CredentialStrategy, ToolboxToolset
 
 creds = CredentialStrategy.user_identity(
     client_id="YOUR_CLIENT_ID",
     client_secret="YOUR_CLIENT_SECRET",
-    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    scopes=[
+        "openid",
+        # "email",
+        # "mcp:tools",
+    ]
 )
 
 # The toolset will now initiate OAuth flows when required by tools
@@ -7134,7 +7189,7 @@ workflows](https://ts.llamaindex.ai/docs/llamaindex/modules/agents/agent_workflo
 ```javascript
 import {ToolboxClient} from "@toolbox-sdk/core"
 import { genkit, z } from 'genkit';
-import { googleAI } from '@genkit-ai/googleai';
+import { googleAI } from 'genkit-ai/google-genai';
 
 
 let client = ToolboxClient(URL)
@@ -9797,19 +9852,19 @@ After you install Looker in the MCP Store, resources and tools from the server a
 
 {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -10299,19 +10354,19 @@ expose your developer assistant tools to a MySQL instance:
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -10625,19 +10680,19 @@ expose your developer assistant tools to a Neo4j instance:
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -10948,19 +11003,19 @@ to expose your developer assistant tools to an Oracle instance:
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -11293,19 +11348,19 @@ Omni](https://cloud.google.com/alloydb/omni/docs/overview).
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -11646,19 +11701,19 @@ instance:
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -11972,19 +12027,19 @@ to expose your developer assistant tools to a SQLite instance:
    <!-- {x-release-please-start-version} -->
    {{< tabpane persist=header >}}
 {{< tab header="linux/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/linux/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/linux/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/arm64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/arm64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/arm64/toolbox
 {{< /tab >}}
 
 {{< tab header="darwin/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/darwin/amd64/toolbox
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/darwin/amd64/toolbox
 {{< /tab >}}
 
 {{< tab header="windows/amd64" lang="bash" >}}
-curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.1.0/windows/amd64/toolbox.exe
+curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/windows/amd64/toolbox.exe
 {{< /tab >}}
 {{< /tabpane >}}
     <!-- {x-release-please-end} -->
@@ -13182,8 +13237,16 @@ Choose your preferred deployment platform below to get started:
 *   **[Kubernetes](./kubernetes/)**: Deploy the Toolbox as a microservice using GKE.
 
 {{< notice tip >}}
-**Production Security:** When moving to production, never hardcode passwords or API keys directly into your `tools.yaml`. Always use environment variable substitution and inject those values securely through your deployment platform's secret manager.
+**Production Security:** When moving to production, never hardcode passwords or
+API keys directly into your `tools.yaml`. Always use environment variable
+substitution and inject those values securely through your deployment platform's
+secret manager.
+
+To enable HTTPS, you must provide a valid pair of `--tls-cert` and `--tls-key`
+files; specifying only one will cause the server to fail at startup.
 {{< /notice >}}
+
+{{< production-security-warning >}}
 
 
 
@@ -13263,8 +13326,8 @@ database are in the same VPC network.
 
 1. Grant additional permissions to the service account that are specific to the
    source, e.g.:
-    - [AlloyDB for PostgreSQL](../../../integrations/alloydb/_index.md#iam-permissions)
-    - [Cloud SQL for PostgreSQL](../../../integrations/cloud-sql-pg/_index.md#iam-permissions)
+    - [AlloyDB for PostgreSQL](../../../integrations/alloydb/source.md#iam-authentication)
+    - [Cloud SQL for PostgreSQL](../../../integrations/cloud-sql-pg/source.md#iam-permissions)
 
 ## Configure `tools.yaml` file
 
@@ -20343,6 +20406,121 @@ useClientOAuth: true
 
 
 ========================================================================
+## cloud-sql-admin-execute-many
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud SQL Admin > Tools > cloud-sql-admin-execute-many
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-sql-admin/tools/cloudsqladminexecutemany/
+**Description:** A "cloud-sql-admin-execute-many" tool executes multiple SQL statements against a specific Cloud SQL instance provided at runtime.
+
+
+
+## About
+
+The `cloud-sql-admin-execute-many` tool executes multiple SQL statements against a specific Cloud SQL instance identified by project, instanceId, and database parameters provided at runtime.
+
+This tool is useful for executing arbitrary SQL queries across multiple database instances without needing to configure a separate tool for each instance.
+
+> **Note:** This tool is intended for developer assistant workflows with human-in-the-loop and shouldn't be used for production agents.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+The following parameters are required at runtime when invoking the tool:
+
+| **Parameter** | **Type** | **Description**               |
+| :------------ | :------- | :---------------------------- |
+| `project`     | string   | The GCP project ID.           |
+| `instanceId`  | string   | The Cloud SQL instance ID.    |
+| `database`    | string   | The database name.            |
+| `sql`         | string   | The SQL statement to execute. |
+
+## Example
+
+```yaml
+kind: tool
+name: execute_sql_many_tool
+type: cloud-sql-admin-execute-many
+source: my-cloud-sql-admin-source
+description: Use this tool to execute sql statements on a specific instance.
+```
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                      |
+| :---------- | :------- | :----------- | :--------------------------------------------------- |
+| type        | string   | true         | Must be "cloud-sql-admin-execute-many".              |
+| source      | string   | true         | Name of the `cloud-sql-admin` source.                |
+| description | string   | true         | Description of the tool that is passed to the agent. |
+
+
+
+
+========================================================================
+## cloud-sql-admin-sql-many
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud SQL Admin > Tools > cloud-sql-admin-sql-many
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-sql-admin/tools/cloudsqladminsqlmany/
+**Description:** A "cloud-sql-admin-sql-many" tool executes a predefined SQL statement against a specific Cloud SQL instance provided at runtime.
+
+
+
+## About
+
+The `cloud-sql-admin-sql-many` tool executes a predefined SQL statement against a specific Cloud SQL instance identified by project, instanceId, and database parameters provided at runtime.
+
+It supports both `parameters` and `templateParameters` to allow dynamic values to be injected into the query at runtime.
+
+> **Note:** This tool is intended for developer assistant workflows with human-in-the-loop and shouldn't be used for production agents.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+The following parameters are required at runtime when invoking the tool:
+
+| **Parameter** | **Type** | **Description**            |
+| :------------ | :------- | :------------------------- |
+| `project`     | string   | The GCP project ID.        |
+| `instanceId`  | string   | The Cloud SQL instance ID. |
+| `database`    | string   | The database name.         |
+
+Additional parameters may be required based on the `parameters` or `templateParameters` configured in the tool definition.
+
+## Example
+
+```yaml
+kind: tool
+name: get_user_many_tool
+type: cloud-sql-admin-sql-many
+source: my-cloud-sql-admin-source
+description: Use this tool to get user details from a specific instance.
+statement: SELECT * FROM users WHERE id = {{.user_id}}
+templateParameters:
+  - name: user_id
+    type: string
+    description: The ID of the user.
+```
+
+## Reference
+
+| **field**          | **type** | **required** | **description**                                      |
+| :----------------- | :------- | :----------- | :--------------------------------------------------- |
+| type               | string   | true         | Must be "cloud-sql-admin-sql-many".                  |
+| source             | string   | true         | Name of the `cloud-sql-admin` source.                |
+| description        | string   | true         | Description of the tool that is passed to the agent. |
+| statement          | string   | true         | The SQL statement template to execute.               |
+| parameters         | list     | false        | List of parameters used in the statement template.   |
+| templateParameters | list     | false        | List of parameters used in the statement template.   |
+
+
+
+
+========================================================================
 ## cloud-sql-list-databases
 ========================================================================
 **Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud SQL Admin > Tools > cloud-sql-list-databases
@@ -22101,7 +22279,7 @@ instead of hardcoding your secrets into the configuration file.
 ========================================================================
 **Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Cloud Storage Source
 **URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/source/
-**Description:** Cloud Storage is Google Cloud's managed service for storing unstructured objects (files) in buckets. Toolbox connects at the project level, allowing tools to list, read, and manage objects across any bucket the credentials can access.
+**Description:** Cloud Storage is Google Cloud's managed service for storing unstructured objects (files) in buckets. Toolbox connects at the project level, allowing tools to list buckets, list objects, read object metadata and content, mutate objects, and transfer objects between Cloud Storage and the server filesystem.
 
 
 
@@ -22137,12 +22315,39 @@ interacting with Cloud Storage.
 In addition to [setting the ADC for your server][set-adc], ensure the IAM
 identity has the appropriate role for the tools being exposed. Common roles:
 
-- `roles/storage.objectViewer` — read-only access to objects (sufficient for
-  `cloud-storage-list-objects` and `cloud-storage-read-object`)
-- `roles/storage.objectUser` — read and write access to objects
+- `roles/storage.bucketViewer` — read-only access to bucket metadata, including
+  listing buckets with `cloud-storage-list-buckets` and reading bucket metadata
+  with `cloud-storage-get-bucket-metadata`.
+- `roles/storage.objectViewer` — read-only access to objects and object
+  metadata, sufficient for `cloud-storage-list-objects`,
+  `cloud-storage-get-object-metadata`, `cloud-storage-read-object`, and
+  `cloud-storage-download-object`.
+- `roles/storage.objectUser` — read and write access to objects, sufficient for
+  `cloud-storage-upload-object`, `cloud-storage-write-object`, and
+  `cloud-storage-copy-object`.
 - `roles/storage.admin` — full control, including bucket management
 
+Object mutation tools require the corresponding object permissions:
+
+- `cloud-storage-upload-object`, `cloud-storage-write-object`, and
+  `cloud-storage-copy-object` require object create or update permissions on
+  the destination object.
+- `cloud-storage-move-object` requires `storage.objects.move` and
+  `storage.objects.create` in the same bucket. If the destination object
+  already exists, `storage.objects.delete` is also required.
+- `cloud-storage-delete-object` requires object delete permission.
+- `cloud-storage-create-bucket` requires bucket create permission in the
+  configured project.
+- `cloud-storage-get-bucket-iam-policy` requires permission to read bucket IAM
+  policy.
+- `cloud-storage-delete-bucket` requires bucket delete permission, and the
+  target bucket must be empty.
+
 See [Cloud Storage IAM roles][gcs-iam] for the full list.
+
+Tools that read from or write to local files operate on the filesystem of the
+Toolbox server process, not the client machine. The server process must have
+the corresponding local file permissions.
 
 [iam-overview]: https://cloud.google.com/storage/docs/access-control/iam
 [adc]: https://cloud.google.com/docs/authentication#adc
@@ -22175,6 +22380,136 @@ project: "my-project-id"
 **URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/
 **Description:** None
 
+
+
+
+
+========================================================================
+## cloud-storage-list-buckets
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-list-buckets
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-list-buckets/
+**Description:** A "cloud-storage-list-buckets" tool lists Cloud Storage buckets in a project, with optional prefix filtering and pagination.
+
+
+
+## About
+
+A `cloud-storage-list-buckets` tool returns the Cloud Storage buckets in a
+project. By default, it uses the project configured on the source. You can pass
+the optional `project` parameter to list buckets in a different project that
+the same credentials can access.
+
+The response is a JSON object with `buckets` (bucket metadata returned by the
+Cloud Storage API) and `nextPageToken` (empty when there are no more pages).
+
+[gcs-buckets]: https://cloud.google.com/storage/docs/buckets
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                                   |
+|---------------|:--------:|:------------:|-------------------------------------------------------------------------------------------------------------------|
+| project       |  string  |    false     | Project ID to list buckets in. When empty, the source's configured project is used.                               |
+| prefix        |  string  |    false     | Filter results to buckets whose names begin with this prefix.                                                     |
+| max_results   | integer  |    false     | Maximum number of buckets to return per page. A value of 0 uses the API default (1000); negative values and values above 1000 are rejected. |
+| page_token    |  string  |    false     | A previously-returned page token for retrieving the next page of results.                                         |
+
+## Example
+
+```yaml
+kind: tool
+name: list_buckets
+type: cloud-storage-list-buckets
+source: my-gcs-source
+description: Use this tool to list Cloud Storage buckets in the project.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**     | **type** | **description**                                  |
+|---------------|:--------:|--------------------------------------------------|
+| buckets       |  array   | Bucket metadata returned by the Cloud Storage API. |
+| nextPageToken |  string  | Token to pass as `page_token` for the next page. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                         |
+|-------------|:--------:|:------------:|---------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-list-buckets".                   |
+| source      |  string  |     true     | Name of the Cloud Storage source to list buckets from.  |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.      |
+
+
+
+
+========================================================================
+## cloud-storage-create-bucket
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-create-bucket
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-create-bucket/
+**Description:** A "cloud-storage-create-bucket" tool creates a Cloud Storage bucket in the configured source project.
+
+
+
+## About
+
+A `cloud-storage-create-bucket` tool creates a new Cloud Storage bucket in the
+project configured on the Cloud Storage source. Use it when an agent needs to
+provision a bucket before writing objects or building a data workflow.
+
+[gcs-buckets]: https://cloud.google.com/storage/docs/buckets
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to create buckets in the configured
+project. Bucket names are globally unique and must satisfy Cloud Storage bucket
+naming rules.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description** |
+|---------------|:--------:|:------------:|-----------------|
+| bucket | string | true | Name of the Cloud Storage bucket to create. |
+| location | string | false | Location for the bucket, e.g. "US", "EU", or "us-central1". Omit to use the Cloud Storage service default. |
+| uniform_bucket_level_access | boolean | false | Whether to enable uniform bucket-level access on the bucket. Defaults to false. |
+
+## Example
+
+```yaml
+kind: tool
+name: create_bucket
+type: cloud-storage-create-bucket
+source: my-gcs-source
+description: Use this tool to create Cloud Storage buckets.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field** | **type** | **description** |
+|-----------|:--------:|-----------------|
+| bucket | string | Cloud Storage bucket that was created. |
+| created | boolean | Whether the bucket was created. |
+| metadata | object | Bucket metadata returned by the Cloud Storage API. |
+
+## Reference
+
+| **field** | **type** | **required** | **description** |
+|-----------|:--------:|:------------:|-----------------|
+| type | string | true | Must be "cloud-storage-create-bucket". |
+| source | string | true | Name of the Cloud Storage source to create buckets from. |
+| description | string | true | Description of the tool that is passed to the LLM. |
 
 
 
@@ -22216,7 +22551,7 @@ returned by the Cloud Storage API — fields such as `Name`, `Size`, `ContentTyp
 | bucket        |  string  |     true     | Name of the Cloud Storage bucket to list objects from.                                                            |
 | prefix        |  string  |    false     | Filter results to objects whose names begin with this prefix.                                                     |
 | delimiter     |  string  |    false     | Delimiter used to group object names (typically '/'). When set, common prefixes are returned as `prefixes`.       |
-| max_results   | integer  |    false     | Maximum number of objects to return per page. A value of 0 uses the API default (1000); values above 1000 are rejected. |
+| max_results   | integer  |    false     | Maximum number of objects to return per page. A value of 0 uses the API default (1000); negative values and values above 1000 are rejected. |
 | page_token    |  string  |    false     | A previously-returned page token for retrieving the next page of results.                                         |
 
 ## Example
@@ -22236,6 +22571,183 @@ description: Use this tool to list objects in a Cloud Storage bucket.
 | type        |  string  |     true     | Must be "cloud-storage-list-objects".                   |
 | source      |  string  |     true     | Name of the Cloud Storage source to list objects from.  |
 | description |  string  |     true     | Description of the tool that is passed to the LLM.      |
+
+
+
+
+========================================================================
+## cloud-storage-get-bucket-metadata
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-get-bucket-metadata
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-get-bucket-metadata/
+**Description:** A "cloud-storage-get-bucket-metadata" tool returns metadata for a Cloud Storage bucket.
+
+
+
+## About
+
+A `cloud-storage-get-bucket-metadata` tool returns metadata for a single Cloud
+Storage bucket. Use it when the LLM needs fields such as location, storage
+class, labels, lifecycle configuration, or uniform bucket-level access status.
+
+The response is the bucket metadata structure returned by the Cloud Storage API.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to read metadata for the target
+bucket.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description** |
+|---------------|:--------:|:------------:|-----------------|
+| bucket | string | true | Name of the Cloud Storage bucket to inspect. |
+
+## Example
+
+```yaml
+kind: tool
+name: get_bucket_metadata
+type: cloud-storage-get-bucket-metadata
+source: my-gcs-source
+description: Use this tool to inspect metadata for a Cloud Storage bucket.
+```
+
+## Output Format
+
+The tool returns bucket metadata from the Cloud Storage API, including fields
+such as `Name`, `Location`, `StorageClass`, `Created`, `Labels`,
+`VersioningEnabled`, `Lifecycle`, and `UniformBucketLevelAccess`.
+
+## Reference
+
+| **field** | **type** | **required** | **description** |
+|-----------|:--------:|:------------:|-----------------|
+| type | string | true | Must be "cloud-storage-get-bucket-metadata". |
+| source | string | true | Name of the Cloud Storage source to get bucket metadata from. |
+| description | string | true | Description of the tool that is passed to the LLM. |
+
+
+
+
+========================================================================
+## cloud-storage-get-object-metadata
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-get-object-metadata
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-get-object-metadata/
+**Description:** A "cloud-storage-get-object-metadata" tool returns metadata for a Cloud Storage object without reading the object payload.
+
+
+
+## About
+
+A `cloud-storage-get-object-metadata` tool returns metadata for a single
+[Cloud Storage object][gcs-objects]. Use it when the LLM needs fields such as
+object name, size, content type, generation, storage class, timestamps, checksums,
+or custom metadata without reading the object's content.
+
+The response is the object metadata structure returned by the Cloud Storage API.
+
+[gcs-objects]: https://cloud.google.com/storage/docs/objects
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                     |
+|---------------|:--------:|:------------:|---------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket containing the object.             |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`. |
+
+## Example
+
+```yaml
+kind: tool
+name: get_object_metadata
+type: cloud-storage-get-object-metadata
+source: my-gcs-source
+description: Use this tool to inspect metadata for a Cloud Storage object.
+```
+
+## Output Format
+
+The tool returns object metadata from the Cloud Storage API, including fields
+such as `Name`, `Bucket`, `Size`, `ContentType`, `Updated`, `StorageClass`,
+`MD5`, `CRC32C`, and user-defined metadata when present.
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                             |
+|-------------|:--------:|:------------:|-------------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-get-object-metadata".                |
+| source      |  string  |     true     | Name of the Cloud Storage source to get object metadata from. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.          |
+
+
+
+
+========================================================================
+## cloud-storage-get-bucket-iam-policy
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-get-bucket-iam-policy
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-get-bucket-iam-policy/
+**Description:** A "cloud-storage-get-bucket-iam-policy" tool returns IAM policy bindings for a Cloud Storage bucket.
+
+
+
+## About
+
+A `cloud-storage-get-bucket-iam-policy` tool returns the IAM policy bindings for
+a Cloud Storage bucket. Use it to inspect which principals have roles on a
+bucket without modifying access.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to read the IAM policy for the target
+bucket.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description** |
+|---------------|:--------:|:------------:|-----------------|
+| bucket | string | true | Name of the Cloud Storage bucket whose IAM policy should be returned. |
+
+## Example
+
+```yaml
+kind: tool
+name: get_bucket_iam_policy
+type: cloud-storage-get-bucket-iam-policy
+source: my-gcs-source
+description: Use this tool to inspect IAM bindings for a Cloud Storage bucket.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field** | **type** | **description** |
+|-----------|:--------:|-----------------|
+| bucket | string | Cloud Storage bucket whose policy was read. |
+| bindings | array | IAM bindings with `role`, `members`, and optional `condition` fields. |
+
+## Reference
+
+| **field** | **type** | **required** | **description** |
+|-----------|:--------:|:------------:|-----------------|
+| type | string | true | Must be "cloud-storage-get-bucket-iam-policy". |
+| source | string | true | Name of the Cloud Storage source to get bucket IAM policies from. |
+| description | string | true | Description of the tool that is passed to the LLM. |
 
 
 
@@ -22266,7 +22778,7 @@ a larger object.
 
 This tool is intended for small-to-medium textual content an LLM can process
 directly. For bulk downloads of large files to the local filesystem, use
-`cloud-storage-download-object` (coming in a follow-up release).
+`cloud-storage-download-object`.
 
 [gcs-objects]: https://cloud.google.com/storage/docs/objects
 
@@ -22299,6 +22811,539 @@ description: Use this tool to read the content of a Cloud Storage object.
 | type        |  string  |     true     | Must be "cloud-storage-read-object".                    |
 | source      |  string  |     true     | Name of the Cloud Storage source to read the object from. |
 | description |  string  |     true     | Description of the tool that is passed to the LLM.      |
+
+
+
+
+========================================================================
+## cloud-storage-delete-bucket
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-delete-bucket
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-delete-bucket/
+**Description:** A "cloud-storage-delete-bucket" tool deletes an empty Cloud Storage bucket.
+
+
+
+## About
+
+A `cloud-storage-delete-bucket` tool deletes an empty Cloud Storage bucket. It
+does not delete objects first; if the bucket is not empty, Cloud Storage rejects
+the operation.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to delete the target bucket. The
+bucket must be empty before the tool is invoked.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description** |
+|---------------|:--------:|:------------:|-----------------|
+| bucket | string | true | Name of the empty Cloud Storage bucket to delete. |
+
+## Example
+
+```yaml
+kind: tool
+name: delete_bucket
+type: cloud-storage-delete-bucket
+source: my-gcs-source
+description: Use this tool to delete empty Cloud Storage buckets.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field** | **type** | **description** |
+|-----------|:--------:|-----------------|
+| bucket | string | Cloud Storage bucket that was deleted. |
+| deleted | boolean | Whether the bucket was deleted. |
+
+## Reference
+
+| **field** | **type** | **required** | **description** |
+|-----------|:--------:|:------------:|-----------------|
+| type | string | true | Must be "cloud-storage-delete-bucket". |
+| source | string | true | Name of the Cloud Storage source to delete buckets from. |
+| description | string | true | Description of the tool that is passed to the LLM. |
+
+
+
+
+========================================================================
+## cloud-storage-download-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-download-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-download-object/
+**Description:** A "cloud-storage-download-object" tool downloads a Cloud Storage object to an absolute path on the Toolbox server filesystem.
+
+
+
+## About
+
+A `cloud-storage-download-object` tool streams a Cloud Storage object to a local
+file on the Toolbox server. Unlike `cloud-storage-read-object`, it does not
+return the object bytes to the LLM and does not require UTF-8 text content, so it
+can be used for binary objects or large files.
+
+The `destination` path is interpreted on the server where Toolbox is running.
+Relative paths and paths containing `..` are rejected.
+
+[gcs-objects]: https://cloud.google.com/storage/docs/objects
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to read the object. The Toolbox
+server process must also be able to create or overwrite the destination file.
+When `overwrite` is false, the tool returns an agent-fixable error if the
+destination already exists.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                         |
+|---------------|:--------:|:------------:|---------------------------------------------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket containing the object.                                                 |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`.                                     |
+| destination   |  string  |     true     | Absolute local filesystem path where the object will be written. Relative paths and paths containing `..` are rejected. |
+| overwrite     | boolean  |    false     | If true, overwrite the destination when it already exists. If false (default), return an error when it exists.     |
+
+## Example
+
+```yaml
+kind: tool
+name: download_object
+type: cloud-storage-download-object
+source: my-gcs-source
+description: Use this tool to download a Cloud Storage object to the server filesystem.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**   | **type** | **description**                                |
+|-------------|:--------:|------------------------------------------------|
+| destination |  string  | Local path where the object was written.       |
+| bytes       | integer  | Number of bytes written.                       |
+| contentType |  string  | Content type recorded on the Cloud Storage object. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                           |
+|-------------|:--------:|:------------:|-----------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-download-object".                  |
+| source      |  string  |     true     | Name of the Cloud Storage source to download objects from. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.        |
+
+
+
+
+========================================================================
+## cloud-storage-upload-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-upload-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-upload-object/
+**Description:** A "cloud-storage-upload-object" tool uploads a local file from the Toolbox server filesystem to a Cloud Storage object.
+
+
+
+## About
+
+A `cloud-storage-upload-object` tool streams a local file from the Toolbox
+server filesystem into a Cloud Storage object. The `source` path is interpreted
+on the server where Toolbox is running. Relative paths and paths containing `..`
+are rejected.
+
+When `content_type` is empty, Toolbox infers a MIME type from the source file
+extension. If inference fails, Cloud Storage detects the content type from the
+uploaded bytes.
+
+[gcs-objects]: https://cloud.google.com/storage/docs/objects
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to create or update the target
+object. The Toolbox server process must also be able to read the local source
+file.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                                   |
+|---------------|:--------:|:------------:|-------------------------------------------------------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket to upload into.                                                                  |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`.                                               |
+| source        |  string  |     true     | Absolute local filesystem path of the file to upload. Relative paths and paths containing `..` are rejected.       |
+| content_type  |  string  |    false     | MIME type to record on the uploaded object. When empty, it is inferred from the source file extension when possible. |
+
+## Example
+
+```yaml
+kind: tool
+name: upload_object
+type: cloud-storage-upload-object
+source: my-gcs-source
+description: Use this tool to upload a local file to Cloud Storage.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**   | **type** | **description**                              |
+|-------------|:--------:|----------------------------------------------|
+| bucket      |  string  | Cloud Storage bucket that received the file. |
+| object      |  string  | Cloud Storage object name that was written.  |
+| bytes       | integer  | Number of bytes uploaded.                    |
+| contentType |  string  | Content type recorded on the uploaded object. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                        |
+|-------------|:--------:|:------------:|--------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-upload-object".                 |
+| source      |  string  |     true     | Name of the Cloud Storage source to upload objects to. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.     |
+
+
+
+
+========================================================================
+## cloud-storage-write-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-write-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-write-object/
+**Description:** A "cloud-storage-write-object" tool writes text content directly to a Cloud Storage object.
+
+
+
+## About
+
+A `cloud-storage-write-object` tool writes text content from the tool request
+directly into a Cloud Storage object. It is useful for creating or replacing
+small text objects without first writing a local file on the Toolbox server.
+
+When `content_type` is empty, Cloud Storage detects the content type from the
+written bytes.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to create or update the target
+object.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                                                       |
+|---------------|:--------:|:------------:|-------------------------------------------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket to write into.                                                       |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`.                                   |
+| content       |  string  |     true     | Text content to write to the Cloud Storage object.                                                    |
+| content_type  |  string  |    false     | MIME type to record on the written object. When empty, Cloud Storage auto-detects from the content.   |
+
+## Example
+
+```yaml
+kind: tool
+name: write_object
+type: cloud-storage-write-object
+source: my-gcs-source
+description: Use this tool to write text content to Cloud Storage.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**   | **type** | **description**                              |
+|-------------|:--------:|----------------------------------------------|
+| bucket      |  string  | Cloud Storage bucket that received content.  |
+| object      |  string  | Cloud Storage object name that was written.  |
+| bytes       | integer  | Number of bytes written.                     |
+| contentType |  string  | Content type recorded on the written object. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                      |
+|-------------|:--------:|:------------:|------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-write-object".                |
+| source      |  string  |     true     | Name of the Cloud Storage source to write objects to. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.   |
+
+
+
+
+========================================================================
+## cloud-storage-copy-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-copy-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-copy-object/
+**Description:** A "cloud-storage-copy-object" tool copies a Cloud Storage object to another object, including across buckets.
+
+
+
+## About
+
+A `cloud-storage-copy-object` tool copies an object from one Cloud Storage
+location to another. The source and destination bucket parameters are separate,
+so the destination can be in the same bucket or a different bucket.
+
+Existing destination objects are replaced.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to read the source object and create
+or update the destination object.
+
+## Parameters
+
+| **parameter**      | **type** | **required** | **description**                                                                    |
+|--------------------|:--------:|:------------:|------------------------------------------------------------------------------------|
+| source_bucket      |  string  |     true     | Name of the Cloud Storage bucket containing the source object.                      |
+| source_object      |  string  |     true     | Full source object name (path) within the source bucket, e.g. `path/to/file.txt`.   |
+| destination_bucket |  string  |     true     | Name of the Cloud Storage bucket to copy into.                                      |
+| destination_object |  string  |     true     | Full destination object name (path) within the destination bucket.                  |
+
+## Example
+
+```yaml
+kind: tool
+name: copy_object
+type: cloud-storage-copy-object
+source: my-gcs-source
+description: Use this tool to copy Cloud Storage objects.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**          | **type** | **description**                                  |
+|--------------------|:--------:|--------------------------------------------------|
+| sourceBucket       |  string  | Source Cloud Storage bucket.                     |
+| sourceObject       |  string  | Source Cloud Storage object name.                |
+| destinationBucket  |  string  | Destination Cloud Storage bucket.                |
+| destinationObject  |  string  | Destination Cloud Storage object name.           |
+| bytes              | integer  | Size of the copied object.                       |
+| contentType        |  string  | Content type recorded on the destination object. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                      |
+|-------------|:--------:|:------------:|------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-copy-object".                 |
+| source      |  string  |     true     | Name of the Cloud Storage source to copy objects in. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.   |
+
+
+
+
+========================================================================
+## cloud-storage-move-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-move-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-move-object/
+**Description:** A "cloud-storage-move-object" tool atomically moves or renames a Cloud Storage object within the same bucket.
+
+
+
+## About
+
+A `cloud-storage-move-object` tool atomically moves or renames an object within
+the same Cloud Storage bucket by using Cloud Storage's native move API.
+
+This tool does not perform cross-bucket moves. For a cross-bucket move, call
+`cloud-storage-copy-object` first, verify the destination, and then call
+`cloud-storage-delete-object` on the source.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must have `storage.objects.move` and
+`storage.objects.create` permissions in the bucket. If the destination object
+already exists, `storage.objects.delete` is also required.
+
+## Parameters
+
+| **parameter**      | **type** | **required** | **description**                                                                 |
+|--------------------|:--------:|:------------:|---------------------------------------------------------------------------------|
+| bucket             |  string  |     true     | Name of the Cloud Storage bucket containing the object to move.                  |
+| source_object      |  string  |     true     | Full source object name (path) within the bucket, e.g. `path/to/file.txt`.       |
+| destination_object |  string  |     true     | Full destination object name (path) within the same bucket.                      |
+
+## Example
+
+```yaml
+kind: tool
+name: move_object
+type: cloud-storage-move-object
+source: my-gcs-source
+description: Use this tool to move or rename an object within a Cloud Storage bucket.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field**          | **type** | **description**                                |
+|--------------------|:--------:|------------------------------------------------|
+| bucket             |  string  | Cloud Storage bucket containing the object.    |
+| sourceObject       |  string  | Original object name.                          |
+| destinationObject  |  string  | Destination object name.                       |
+| bytes              | integer  | Size of the moved object.                      |
+| contentType        |  string  | Content type recorded on the destination object. |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                      |
+|-------------|:--------:|:------------:|------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-move-object".                 |
+| source      |  string  |     true     | Name of the Cloud Storage source to move objects in. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.   |
+
+
+
+
+========================================================================
+## cloud-storage-delete-object
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Tools > cloud-storage-delete-object
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/tools/cloud-storage-delete-object/
+**Description:** A "cloud-storage-delete-object" tool deletes a Cloud Storage object.
+
+
+
+## About
+
+A `cloud-storage-delete-object` tool deletes a single object from a Cloud
+Storage bucket.
+
+## Compatible Sources
+
+{{< compatible-sources >}}
+
+## Requirements
+
+The Cloud Storage credentials must be able to delete the target object.
+
+## Parameters
+
+| **parameter** | **type** | **required** | **description**                                                     |
+|---------------|:--------:|:------------:|---------------------------------------------------------------------|
+| bucket        |  string  |     true     | Name of the Cloud Storage bucket containing the object to delete.    |
+| object        |  string  |     true     | Full object name (path) within the bucket, e.g. `path/to/file.txt`.  |
+
+## Example
+
+```yaml
+kind: tool
+name: delete_object
+type: cloud-storage-delete-object
+source: my-gcs-source
+description: Use this tool to delete Cloud Storage objects.
+```
+
+## Output Format
+
+The tool returns a JSON object with:
+
+| **field** | **type** | **description**                             |
+|-----------|:--------:|---------------------------------------------|
+| bucket    |  string  | Cloud Storage bucket containing the object. |
+| object    |  string  | Cloud Storage object name that was deleted. |
+| deleted   | boolean  | Whether the delete request completed.       |
+
+## Reference
+
+| **field**   | **type** | **required** | **description**                                        |
+|-------------|:--------:|:------------:|--------------------------------------------------------|
+| type        |  string  |     true     | Must be "cloud-storage-delete-object".                 |
+| source      |  string  |     true     | Name of the Cloud Storage source to delete objects in. |
+| description |  string  |     true     | Description of the tool that is passed to the LLM.     |
+
+
+
+
+========================================================================
+## Prebuilt Configs
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Prebuilt Configs
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/prebuilt-configs/
+**Description:** Prebuilt configurations for Cloud Storage.
+
+
+
+
+
+========================================================================
+## Cloud Storage
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Cloud Storage > Prebuilt Configs > Cloud Storage
+**URL:** https://mcp-toolbox.dev/dev/integrations/cloud-storage/prebuilt-configs/cloud-storage/
+**Description:** Details of the Cloud Storage prebuilt configuration.
+
+
+## Cloud Storage
+
+*   `--prebuilt` value: `cloud-storage`
+*   **Environment Variables:**
+    *   `CLOUD_STORAGE_PROJECT`: The GCP project ID that owns the buckets.
+*   **Permissions:**
+    *   **Storage Object User** (`roles/storage.objectUser`) for object reads and
+        writes (`list_objects`, `read_object`, `download_object`,
+        `get_object_metadata`, `write_object`, `upload_object`, `copy_object`,
+        `move_object`, `delete_object`).
+    *   **Storage Admin** (`roles/storage.admin`) for bucket lifecycle and IAM
+        operations (`list_buckets`, `create_bucket`, `delete_bucket`,
+        `get_bucket_metadata`, `get_bucket_iam_policy`).
+    *   For read-only deployments, **Storage Object Viewer**
+        (`roles/storage.objectViewer`) plus **Storage Legacy Bucket Reader**
+        (`roles/storage.legacyBucketReader`) is sufficient for the read-only
+        subset.
+*   **Tools:**
+    *   `list_buckets`: Lists Cloud Storage buckets in the configured project.
+    *   `list_objects`: Lists objects in a bucket with optional prefix and
+        delimiter filtering.
+    *   `get_bucket_metadata`: Returns metadata for a bucket.
+    *   `get_bucket_iam_policy`: Returns the IAM policy bindings for a bucket.
+    *   `get_object_metadata`: Returns metadata for an object.
+    *   `read_object`: Reads a UTF-8 text object (or byte range). Capped at 8
+        MiB; binary objects are rejected.
+    *   `download_object`: Downloads an object to a local file path.
+    *   `create_bucket`: Creates a bucket in the configured project.
+    *   `delete_bucket`: Deletes an empty bucket.
+    *   `upload_object`: Uploads a local file to an object.
+    *   `write_object`: Writes text content directly to an object.
+    *   `copy_object`: Copies an object to a destination object.
+    *   `move_object`: Atomically renames an object within the same bucket.
+    *   `delete_object`: Deletes an object.
+*   **Toolsets:**
+    *   `cloud-storage-buckets`: Bucket administration (list, create, inspect
+        metadata and IAM policy, delete).
+    *   `cloud-storage-objects`: Object management (list, read, write, copy,
+        move, delete, retrieve metadata).
 
 
 
@@ -27778,6 +28823,26 @@ will send the following output:
 }
 ```
 
+##### Path Escape
+
+The `pathEscape` keyword escapes strings so they can be safely placed inside a URL path segment, replacing special characters like slashes `/` with `%2F`.
+
+Example:
+
+```yaml
+path: /users/{{pathEscape .username}}/records
+```
+
+##### Query Escape
+
+The `queryEscape` keyword escapes strings to be safely placed inside a URL query string, encoding spaces into `+` and special characters into percent-encoded values.
+
+Example:
+
+```yaml
+path: /search?q={{queryEscape .query}}
+```
+
 ## Example
 
 ```yaml
@@ -28390,7 +29455,7 @@ description: Use this tool to retrieve a specific entry in Knowledge Catalog.
 ========================================================================
 **Hierarchy:** MCP Toolbox for Databases > Integrations > Knowledge Catalog > Tools > dataplex-search-aspect-types
 **URL:** https://mcp-toolbox.dev/dev/integrations/knowledge-catalog/tools/knowledge-catalog-search-aspect-types/
-**Description:** A "dataplex-search-aspect-types" tool allows to to find aspect types relevant to the query.
+**Description:** A "dataplex-search-aspect-types" tool allows to find aspect types relevant to the query.
 
 
 
@@ -31979,6 +33044,254 @@ description: |
 
 
 ========================================================================
+## Claude Desktop and OAuth
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Looker > Samples > Claude Desktop and OAuth
+**URL:** https://mcp-toolbox.dev/dev/integrations/looker/samples/looker_claude_oauth/
+**Description:** How to connect to Looker from Claude Desktop with end-user credentials
+
+
+
+## Overview
+In order for OAuth to work for an MCP client, the client needs to know how to
+contact Looker, initiate the OAuth PKCE flow, and get a valid token. That
+token can then be used in the Authorization header in requests to MCP Toolbox.
+MCP Toolbox will then use that token when sending API requests to Looker.
+
+Claude Desktop does not support as many configuration options as Gemini CLI,
+so the methods for setting up Gemini CLI will not work. Instead, a new feature
+was needed in MCP Toolbox.
+
+One of the ways that a server can communicate its OAuth requirements is by
+providing a document called “OAuth Protected Resource Metadata” (PRM) defined
+by RFC 9728\. A server that supports PRM will respond to a HTTP GET request from
+the client to the location `/.well-known/oauth-protected-resource` with a json
+document that specifies the authorization servers to be used and the scopes that
+are required for the OAuth authorization. The client can then start the OAuth
+flow.
+
+MCP Toolbox recently added support for specifying a PRM file and will serve that
+GET request. This is needed to make OAuth from Claude Desktop work properly.
+
+## Configure and Deploy MCP Toolbox
+For an MCP Server to work with Claude Desktop, it must be accessed via HTTPS.
+The MCP Toolbox in server mode only supports HTTP. Therefore it must be deployed
+with a “reverse proxy” of some sort that receives the HTTPS messages, terminates
+the SSL, then forwards the message as HTTP. Responses are sent via HTTP to the
+proxy and are then sent to the client via HTTPS. This is a common pattern in the
+networking world and should not be difficult to set up. Google Cloud Run, for
+example, does this automatically.
+
+1.  The toolbox should be run with the following environment variables set.
+    `https://looker.example.com` should be substituted with the URL of your Looker
+    server.
+
+    * `LOOKER_BASE_URL=https://looker.example.com`  
+    * `LOOKER_USE_CLIENT_OAUTH=true`
+
+1.  The toolbox should be run with the following command line options:
+
+    * `--prebuilt=looker,looker-dev`  
+    * `--mcp-prm-file=prm.json`
+    
+    The `--mcp-prm-file=` setting is used to point to a json file with the settings
+    that should be used for this case. The file should look like this:
+    ```json
+    {
+      "resource": "https://looker-mcp-toolbox.example.com/mcp",
+      "authorization_servers": ["https://looker.example.com"],
+      "scopes_supported": ["cors_api"]
+    }
+    ```
+
+    The “resource” field will be the URL of the reverse proxy server with `/mcp`
+    added to the end. The “authorization\_servers” field will be an array with one
+    element, the Looker URL, the same value as `LOOKER_BASE_URL` above. The
+    “scopes\_supported” will also be an array with one element. That element is
+    always “cors\_api”.
+
+1.  Additionally, depending how the reverse proxy is set up, the following options
+    might be useful:
+
+    * `--address=0.0.0.0`  
+    * `--port=8080`
+
+    MCP Toolbox normally listens on 127.0.0.1 port 5000\. If the reverse proxy is on
+    another host, you will need to use `--address=0.0.0.0` to indicate that it
+    should bind to all ip addresses. The `--port=` setting is used if you need to
+    use a listening port other than 5000\. Google Cloud Run, for example,
+    automatically forwards external traffic from port 443, the HTTPS port, to 8080\.
+
+1.  Deploy the toolbox and check that navigating to the proxy server url with the
+    path `/.well-known/oauth-protected-resource`. You should see the contents of
+    your PRM file in the browser.
+
+    ![PRM file in browser](./PRM_file_in_browser.png)
+
+{{< notice tip >}}
+Be sure to look at the [Toolbox CLI Reference](/reference/cli/),
+specifically the subsection on "Hardening Toolbox" for security recommendations.
+You may want to specify additional settings.
+{{< /notice >}}
+
+## Register the OAuth App in Looker
+1.  In Looker, go to “Applications” at the bottom of the list on the left side and
+    then select the “API Explorer”.  
+
+    ![Applications item](./applications.png)
+
+1.  On the left hand side, expand the “Auth” heading and choose “Register OAuth
+    App”. Choose “Run It” from the top right. You will see this screen.  
+
+    ![Register oauth app](./register_oauth_app.png)
+
+1.  For client_guid, enter the string `claude-desktop`. 
+
+1.  For the body, enter the following text:
+    ```json
+    {
+      "redirect_uri": "https://claude.ai/api/mcp/auth_callback",
+      "display_name": "Claude Desktop",
+      "description": "Claude Desktop",
+      "enabled": true
+    }
+    ```
+
+1.  Check the box next to “I understand that this API endpoint will change data.”
+    You should see this:  
+    
+    ![Register oauth app filled out](./register_oauth_app_2.png)
+
+1.  Now click the run button. Your response will look like this:
+
+    ![Register oauth app response](./register_oauth_app_response.png)
+
+## Configuring Claude Desktop
+1.  In Claude Desktop, go to Settings, then Connectors. You should see a page like
+    this:  
+
+    ![Claude Desktop connectors](./connectors.png)
+
+1.  Choose “Add custom connector”. Enter a name like “Looker”. For the URL use the
+    URL of the reverse proxy server with the path `/mcp` added to it.  
+
+    ![Add custom connector](./add_custom_connector.png)
+
+1.  Open “Advanced settings”. Enter `claude-desktop` as the OAuth Client Id. This is
+    the client\_guid we registered in Looker. Leave the OAuth Client Secret blank.  
+
+    ![Custom Connector Advanced Settings](./custom_connector_advanced_settings.png)
+
+1.  Now click “Add”. Looker will show up under the list of connectors.
+
+    ![Custom connectors](./custom_connectors.png)
+
+When you connect to Looker, Claude Desktop will initiate the PKCE Authentication
+flow with Looker in your browser.
+
+
+
+
+========================================================================
+## Connect to Looker with MCP Toolbox in Google Cloud Run
+========================================================================
+**Hierarchy:** MCP Toolbox for Databases > Integrations > Looker > Samples > Connect to Looker with MCP Toolbox in Google Cloud Run
+**URL:** https://mcp-toolbox.dev/dev/integrations/looker/samples/looker_cloud_run/
+**Description:** How to start an MCP Toolbox instance in Google Cloud Run to connect to Looker.
+
+
+
+## Running MCP Toolbox in Google Cloud Run
+
+It is easy to run MCP Toolbox in Google Cloud Run.
+
+1.  Navigate to Cloud Run Overview in a Google Cloud Console project. Choose “Deploy container”:  
+
+    ![Deploy a Web Service](./deploy_a_web_service.png)
+
+1.  Set the “Image name” to
+    `us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:latest`. Set
+    the “Service name” to `looker-mcp-toolbox` and choose the “Region”. Note the
+    “Endpoint URL”, you will need it later. Set the “Authentication” to “Public”.  
+
+    ![Image configuration](./image_config.png)
+
+1.  Set “Service scaling” to Auto with a minimum number of instances of “1”. Set
+    “Ingress” to “All”.
+    
+    ![Image configuration 2](./image_config_2.png)
+
+1.  Now open the drop down for “Containers, Networking, Security”.
+
+1.  Under “Container settings” set “Container arguments” to
+    `--prebuilt=looker,looker-dev`, `--port=8080`, `--address=0.0.0.0`, and
+    `--mcp-prm-file=/app/prm_file`.  
+
+    ![Container Settings](./container_settings.png)
+
+1.  Under “Variables & Secrets” set `LOOKER_BASE_URL`, setting it to the URL of
+    your Looker server, and `LOOKER_USE_CLIENT_OAUTH=true`.
+    
+    ![Container variables](./container_variables.png)
+
+1.  Under “Container Volumes” mount a new Secret Volume with a mount path of
+    `/app`. Create a new secret `prm_file` with the contents of the PRM, for
+    example:
+
+    ```json
+    {
+    "resource": "https://<your-cloud-run-url>/mcp",
+    "authorization_servers": ["https://<your-looker-instance>.looker.com"],
+    "scopes_supported": ["cors_api"]
+    }
+    ```
+
+    ![Create secret](./create_secret.png)
+
+    ![Container secret volume](./container_secret_volume.png)
+
+1.  You may also need to go to IAM and grant the role “Secret Manager Secret
+    Accessor” to your compute service account identity.
+
+1.  Now click “Done” in the lower right corner. Then click Create to start the
+    service.
+
+1.  Validate the service is running by going to the URL, followed by
+    `/.well-known/oauth-protected-resource`.
+
+{{< notice tip >}}
+Be sure to look at the [Toolbox CLI Reference](/reference/cli/),
+specifically the subsection on "Hardening Toolbox" for security recommendations.
+You may want to specify additional settings under "Container arguments".
+{{< /notice >}}
+
+## Using the MCP Toolbox Via OAuth and Gemini CLI
+
+1.  Follow the directions to register the [OAuth App in Looker](../looker_gemini_oauth/)
+
+1.  In `$HOME/.gemini/settings.json` add the following stanza, using the Endpoint URL
+    you saved earlier with `/mcp` appended.
+
+    ```json
+    "mcpServers": {
+        "looker": {
+            "httpUrl": "https://<your-cloud-run-url>/mcp",
+            "oauth": {
+                "clientId": "gemini-cli",
+                "redirectUri": "http://localhost:7777/oauth/callback"
+            }
+        }
+    },
+    ```
+1.  Start Gemini CLI and issue the command `/mcp auth looker`. Gemini CLI will start
+    the OAuth flow. Approve access in the browser.
+
+1.  Validate that everything works by issuing a prompt in Gemini CLI like "What Looker
+    models do I have access to?"
+
+
+
+========================================================================
 ## Gemini-CLI and OAuth
 ========================================================================
 **Hierarchy:** MCP Toolbox for Databases > Integrations > Looker > Samples > Gemini-CLI and OAuth
@@ -32029,7 +33342,7 @@ In this section, we will download Toolbox and run the Toolbox server.
     <!-- {x-release-please-start-version} -->
     ```bash
     export OS="linux/amd64" # one of linux/amd64, darwin/arm64, darwin/amd64, or windows/amd64
-    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v0.30.0/$OS/toolbox
+    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/$OS/toolbox
     ```
     <!-- {x-release-please-end} -->
 
@@ -32081,6 +33394,7 @@ In this section, we will download Toolbox and run the Toolbox server.
             "oauth": {
                 "enabled": true,
                 "clientId": "gemini-cli",
+                "redirectUri": "http://localhost:7777/oauth/callback",
                 "authorizationUrl": "https://looker.example.com/auth",
                 "tokenUrl": "https://looker.example.com/api/token",
                 "scopes": ["cors_api"]
@@ -32117,9 +33431,37 @@ foward the requests to `http://localhost:5000/mcp` running in that environment.
 The details of the config are beyond the scope of this document, but will be
 familiar to your system administrators.
 
+{{< notice tip >}}
+Be sure to look at the [Toolbox CLI Reference](/reference/cli/),
+specifically the subsection on "Hardening Toolbox" for security recommendations.
+You may want to specify additional settings to improve security.
+{{< /notice >}}
+
 To use the shared service, just change the `localhost:5000` in the `httpUrl` in
 `~/.gemini/settings.json` to the host name and possibly the port of the shared
 service.
+
+## Configure Gemini-CLI When An OAuth PRM File Is Used
+
+If you have configured an OAuth Protected Resource Metadata (PRM) file, the
+configuration for Gemini-CLI is simpler. PRM samples can be found in the
+configuration for [Claude Desktop with OAuth](../looker_claude_oauth/) or
+[Looker Cloud Run with OAuth](../looker_cloud_run/).
+
+Skip **Step 2** and use the following in the `~/.gemini/settings.json` file in
+**Step 3**:
+
+```json
+"mcpServers": {
+    "looker": {
+        "httpUrl": "https://<your mcp server url>/mcp",
+        "oauth": {
+            "clientId": "gemini-cli",
+            "redirectUri": "http://localhost:7777/oauth/callback"
+        }
+    }
+}
+```
 
 
 
@@ -32161,7 +33503,7 @@ In this section, we will download Toolbox and run the Toolbox server.
     <!-- {x-release-please-start-version} -->
     ```bash
     export OS="linux/amd64" # one of linux/amd64, darwin/arm64, darwin/amd64, or windows/amd64
-    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v0.30.0/$OS/toolbox
+    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/$OS/toolbox
     ```
     <!-- {x-release-please-end} -->
 
@@ -32284,7 +33626,7 @@ In this section, we will download Toolbox and run the Toolbox server.
     <!-- {x-release-please-start-version} -->
     ```bash
     export OS="linux/amd64" # one of linux/amd64, darwin/arm64, darwin/amd64, or windows/amd64
-    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v0.30.0/$OS/toolbox
+    curl -O https://storage.googleapis.com/mcp-toolbox-for-databases/v1.3.0/$OS/toolbox
     ```
     <!-- {x-release-please-end} -->
 
@@ -42493,29 +43835,32 @@ Configure the Gemini CLI to talk to your local Toolbox MCP server.
 
 ## Reference
 
-| Flag (Short) | Flag (Long)                | Description                                                                                                                                                                      | Default     |
-|--------------|----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| `-a`         | `--address`                | Address of the interface the server will listen on.                                                                                                                              | `127.0.0.1` |
+| Flag (Short) | Flag (Long)                | Description                                                                                                                                                               | Default     |
+|--------------|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| `-a`         | `--address`                | Address of the interface the server will listen on.                                                                                                                       | `127.0.0.1` |
 |              | `--disable-reload`         | Disables dynamic reloading config.                                                                                                                                        |             |
-| `-h`         | `--help`                   | help for toolbox                                                                                                                                                                 |             |
-|              | `--log-level`              | Specify the minimum level logged. Allowed: 'DEBUG', 'INFO', 'WARN', 'ERROR'.                                                                                                     | `info`      |
-|              | `--logging-format`         | Specify logging format to use. Allowed: 'standard' or 'JSON'.                                                                                                                    | `standard`  |
-|              | `--mcp-prm-file`           | Path to a manual Protected Resource Metadata (PRM) JSON file. If provided, overrides auto-generation for MCP Server-Wide Authentication.                                         |             |
-| `-p`         | `--port`                   | Port the server will listen on.                                                                                                                                                  | `5000`      |
-|              | `--prebuilt`               | Use one or more prebuilt tool configuration by source type. See [Prebuilt Tools Reference](../documentation/configuration/prebuilt-configs/_index.md) for allowed values.                                                |             |
-|              | `--stdio`                  | Listens via MCP STDIO instead of acting as a remote HTTP server.                                                                                                                 |             |
-|              | `--telemetry-gcp`          | Enable exporting directly to Google Cloud Monitoring.                                                                                                                            |             |
-|              | `--telemetry-otlp`         | Enable exporting using OpenTelemetry Protocol (OTLP) to the specified endpoint (e.g. 'http://127.0.0.1:4318')                                                                    |             |
-|              | `--telemetry-service-name` | Sets the value of the service.name resource attribute for telemetry data.                                                                                                        | `toolbox`   |
-|              | `--config`             | File path specifying the tool configuration. Cannot be used with --configs or --config-folder.                                                                                |             |
-|              | `--configs`            | Multiple file paths specifying tool configurations. Files will be merged. Cannot be used with --config or --config-folder.                                                    |             |
-|              | `--config-folder`           | Directory path containing YAML tool configuration files. All .yaml and .yml files in the directory will be loaded and merged. Cannot be used with --config or --configs. |             |
-|              | `--ui`                     | Launches the Toolbox UI web server.                                                                                                                                              |             |
-|              | `--allowed-origins`        | Specifies a list of origins permitted to access this server for CORs access.                                                                                                     | `*`         |
-|              | `--allowed-hosts`          | Specifies a list of hosts permitted to access this server to prevent DNS rebinding attacks.                                                                                      | `*`         |
-|              | `--user-agent-metadata`    | Appends additional metadata to the User-Agent.                                                                                                                                   |             |
-|              | `--poll-interval`          | Specifies the polling frequency (seconds) for configuration file updates.                                                                                                        | `0`         |
-| `-v`         | `--version`                | version for toolbox                                                                                                                                                              |             |
+| `-h`         | `--help`                   | help for toolbox                                                                                                                                                          |             |
+|              | `--log-level`              | Specify the minimum level logged. Allowed: 'DEBUG', 'INFO', 'WARN', 'ERROR'.                                                                                              | `info`      |
+|              | `--logging-format`         | Specify logging format to use. Allowed: 'standard' or 'JSON'.                                                                                                             | `standard`  |
+|              | `--mcp-prm-file`           | Path to a manual Protected Resource Metadata (PRM) JSON file. If provided, overrides auto-generation for MCP Server-Wide Authentication.                                  |             |
+| `-p`         | `--port`                   | Port the server will listen on.                                                                                                                                           | `5000`      |
+|              | `--tls-cert`               | Path to the PEM-encoded TLS certificate file.                                                                                                                             |             |
+|              | `--tls-key`                | Path to the PEM-encoded TLS private key file.                                                                                                                             |             |
+|              | `--prebuilt`               | Use one or more prebuilt tool configuration by source type. See [Prebuilt Tools Reference](../documentation/configuration/prebuilt-configs/_index.md) for allowed values. |             |
+|              | `--stdio`                  | Listens via MCP STDIO instead of acting as a remote HTTP server.                                                                                                          |             |
+|              | `--telemetry-gcp`          | Enable exporting directly to Google Cloud Monitoring.                                                                                                                     |             |
+|              | `--telemetry-otlp`         | Enable exporting using OpenTelemetry Protocol (OTLP) to the specified endpoint (e.g. 'http://127.0.0.1:4318')                                                             |             |
+|              | `--telemetry-service-name` | Sets the value of the service.name resource attribute for telemetry data.                                                                                                 | `toolbox`   |
+|              | `--sql-commenter`          | Append SQLCommenter-format comments (traceparent, server, tool.name, db.system.name, client metadata from `_meta["dev.mcp-toolbox/telemetry"]`) to executed SQL.          |             |
+|              | `--config`                 | File path specifying the tool configuration. Cannot be used with --configs or --config-folder.                                                                            |             |
+|              | `--configs`                | Multiple file paths specifying tool configurations. Files will be merged. Cannot be used with --config or --config-folder.                                                |             |
+|              | `--config-folder`          | Directory path containing YAML tool configuration files. All .yaml and .yml files in the directory will be loaded and merged. Cannot be used with --config or --configs.  |             |
+|              | `--ui`                     | Launches the Toolbox UI web server.                                                                                                                                       |             |
+|              | `--allowed-origins`        | Specifies a list of origins permitted to access this server for CORs access.                                                                                              | `*`         |
+|              | `--allowed-hosts`          | Specifies a list of hosts permitted to access this server to prevent DNS rebinding attacks.                                                                               | `*`         |
+|              | `--user-agent-metadata`    | Appends additional metadata to the User-Agent.                                                                                                                            |             |
+|              | `--poll-interval`          | Specifies the polling frequency (seconds) for configuration file updates.                                                                                                 | `0`         |
+| `-v`         | `--version`                | version for toolbox                                                                                                                                                       |             |
 
 ## Sub Commands
 
@@ -42566,6 +43911,55 @@ For more detailed instructions, see [Generate Agent Skills](../documentation/con
 </details>
 
 ## Examples
+
+### Hardening Toolbox
+
+Toolbox is designed for flexibility, but security should not be ignored—even in
+local development. When exposing the server to a network or running it alongside
+a web browser, use these configurations to protect your data and system.
+
+#### Host Validation & DNS Rebinding Protection
+The `--allowed-hosts` flag controls which Host headers the server accepts.
+Restricting this is the primary defense against DNS Rebinding attacks.
+
+* Flag: `--allowed-hosts`
+* Local Development: Set to localhost or 127.0.0.1.
+* Production: Set to your specific FQDN (e.g., toolbox.example.com).
+* Example:
+  ```
+  ./toolbox --allowed-hosts="localhost,127.0.0.1"
+  ```
+
+
+{{< notice tip >}}
+**The "Local" Fallacy:** Using `--allowed-hosts="*"` is unsafe even on localhost. A
+malicious website can trick your browser into making requests to `127.0.0.1`,
+effectively bypassing the browser's security to control your local Toolbox.
+{{< /notice >}}
+
+#### Cross-Origin Resource Sharing (CORS)
+The `--allowed-origins` flag dictates which web applications (frontends) are
+permitted to communicate with your Toolbox API.
+
+* Flag: `--allowed-origins`
+* Recommendation: Avoid `*` in any environment containing sensitive data. Explicitly list your trusted frontend URLs.
+* Example: 
+  ```
+  ./toolbox --allowed-origins="https://my-mcp-ui.internal.com"
+  ```
+
+#### Transport Layer Security (TLS/HTTPS)
+By default, traffic is unencrypted (HTTP). In production or shared networks, you must enable TLS to prevent Man-in-the-Middle (MitM) attacks and packet sniffing.
+
+* Flag: `--tls-cert` and `--tls-key` (Both cert and key files are required for
+  TLS activation)
+* Protocol: Toolbox enforces TLS 1.2 as a minimum version to ensure modern encryption standards.
+* Use Case: Use Certbot for public domains or mkcert for locally-trusted development certificates.
+* Example:
+  ```
+  ./toolbox --tls-cert=cert.pem --tls-key=key.pem
+  ```
+
 
 ### Transport Configuration
 
@@ -42664,6 +44058,7 @@ For detailed instructions, check out these resources:
 
 - [Quickstart: How to Run Locally](../documentation/getting-started/local_quickstart.md)
 - [Deploy to Cloud Run](../documentation/deploy-to/cloud-run/_index.md)
+- To run Toolbox more securely or harden security, check out our [hardening guidelines](./cli.md#hardening-toolbox)
 
 [release-notes]: https://github.com/googleapis/mcp-toolbox/releases/
 
